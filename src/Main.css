@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+main {
+  font-family: 'Montserrat', sans-serif;
+  padding-top: 80px; }
+  main > div {
+    max-width: 1600px;
+    padding: 20px 15px;
+    width: 100%;
+    margin: 0 auto;
+    background: blue;
+    min-height: 100vh; }
+
+.header-container {
+  height: 80px;
+  background: red;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  font-family: 'Montserrat', sans-serif; }
+  .header-container > div {
+    max-width: 1600px;
+    padding: 0 15px;
+    width: 100%;
+    margin: 0 auto;
+    background: green;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+  .header-container .nav-links-desktop {
+    width: 300px; }
+    .header-container .nav-links-desktop ul {
+      display: flex;
+      justify-content: space-around; }
+      .header-container .nav-links-desktop ul li {
+        font-size: 22px; }
+        .header-container .nav-links-desktop ul li a {
+          color: white;
+          text-decoration: none; }
+  .header-container .nav-links-mobile-container {
+    display: none; }
+  @media (max-width: 900px) {
+    .header-container .nav-links-desktop {
+      display: none; }
+    .header-container .nav-links-mobile-container {
+      display: flex;
+      position: relative; }
+      .header-container .nav-links-mobile-container .hamburger-icon {
+        position: absolute;
+        top: -12px;
+        right: 0px;
+        z-index: 2;
+        cursor: pointer; }
+      .header-container .nav-links-mobile-container .links {
+        position: fixed;
+        padding: 80px 20px 20px;
+        right: 0;
+        top: 0;
+        height: 100vh;
+        width: 300px;
+        background: #323232;
+        transition: .3s; }
+        .header-container .nav-links-mobile-container .links ul {
+          width: 100%; }
+          .header-container .nav-links-mobile-container .links ul li {
+            border-bottom: solid 1px #646464;
+            padding: 10px;
+            text-align: center;
+            font-size: 20px; }
+            .header-container .nav-links-mobile-container .links ul li a {
+              color: white;
+              text-decoration: none;
+              font-family: 'Montserrat', sans-serif; }
+          .header-container .nav-links-mobile-container .links ul li:hover {
+            border-bottom: solid 1px #4b4b4b;
+            cursor: pointer; }
+          .header-container .nav-links-mobile-container .links ul li:first-child {
+            border-top: solid 1px #646464; }
+      .header-container .nav-links-mobile-container .hide {
+        transform: translate(300px, 0px); } }
