@@ -20,7 +20,7 @@ export const CartIcon = (props) => {
 
 export const HamburgerIcon = (props) => {
     return (
-        <svg onClick={props.toggleMobileLinks} width="41px" height="20px" viewBox="0 0 141 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/1999/xlink" sketch="http://www.bohemiancoding.com/sketch/ns">
+        <svg onClick={props.toggleMobileLinks} width="41px" height="20px" viewBox="0 0 141 100" version="1.1" xmlns="http://www.w3.org/2000/svg" sketch="http://www.bohemiancoding.com/sketch/ns">
             <title>icon-hamburger-light</title>
             <desc>Created with Sketch.</desc>
             <defs></defs>

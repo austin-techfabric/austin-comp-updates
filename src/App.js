@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import {Switch, Route} from 'react-router-dom';
 import Header from "./components/shared/Header";
-import LandingContainer from './components/landing/LandingContainer';
-import LoginContainer from './components/Login/LoginContainer';
+import LoginContainer from './components/landing/LoginContainer';
 import './Main.css';
 
 class App extends Component {
@@ -12,8 +11,7 @@ class App extends Component {
        <Header />
        <main>
           <Switch>
-            <Route exact path='/' component={LandingContainer} />
-            <Route path='/login' component={LoginContainer}/>
+            <Route exact path='/' component={LoginContainer} />
             <Route path='*' render={() => {
               return <div style={{textAlign:"center"}}>
                Nothing to see here!

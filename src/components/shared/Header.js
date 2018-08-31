@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {HamburgerIcon} from './Icons';
 import MobileLinks from './MobileLinks';
 import { Link } from 'react-router-dom';
+import Logo from '../../styles/media/devmountain_logo.png';
 
 export default class Header extends Component {
     constructor(){
@@ -26,7 +27,7 @@ export default class Header extends Component {
             <div className='header-container'>
                 <div>
                     <div className='header-logo'>
-                        <h1>JOSH BORUP</h1>
+                        <img src={Logo} alt='dev mountain logo'/>
                     </div>
                     <div className='nav-links-desktop'>
                         <ul>

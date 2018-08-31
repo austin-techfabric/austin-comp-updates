@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ContextProvider from './components/shared/Context';
 import {BrowserRouter} from 'react-router-dom';
 import './index.css';
 import App from './App';
@@ -16,7 +17,9 @@ registerServiceWorker();
 const render = Component => {
     return ReactDOM.render(
         <BrowserRouter>
-          <Component />
+          <ContextProvider>
+              <Component />
+          </ContextProvider>
         </BrowserRouter>
       ,
       document.getElementById('root')
