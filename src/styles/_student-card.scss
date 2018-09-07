@@ -1,0 +1,53 @@
+
+.mapped-student-container {
+    
+    a {
+        margin: 10px;
+        text-decoration: none;
+        color:$link-color;
+        text-shadow: .5px .5px .4px rgba(0, 0, 0, 0.393);
+    }
+    
+    header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 30px;
+        font-size: 22px;
+        border-bottom: 1px grey solid;
+    }
+
+    .student-card-container {
+        width: 100%;
+        background:rgb(216, 216, 216);
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 0px 15px 15px;
+        align-items: center;
+
+        span {
+            font-size: 20px;
+        }
+
+        .student-name {
+            
+        }
+
+        .percentages-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+            .comps-left {
+                padding-right: 0px;
+                position: absolute;
+                right: 0;
+                left: 0;
+                width: 55px;
+                top: 55%;
+                font-size: 18px;
+                margin: 0 auto;
+            }
+
+        }
+    }
+}

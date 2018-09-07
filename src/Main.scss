@@ -3,14 +3,14 @@
 main {
     font-family: 'Montserrat', sans-serif;
     padding-top: 80px;
+    background: rgb(236, 236, 236);
 
     > div {
         max-width: 1600px;
         padding: 20px 15px;
         width: 100%;
         margin: 0 auto;
-        background: blue;
-        min-height: 100vh;
+        min-height: calc(100vh - 80px);
     }
 
 }
@@ -20,7 +20,9 @@ main {
 }
 
 
-
-
+@import './styles/_variables.scss';
 @import './styles/_header.scss';
-@import './styles/_login.scss'
+@import './styles/_home.scss';
+@import './styles/_student-card.scss';
+@import './styles/_dashboard.scss';
+@import './styles/_student-container.scss';

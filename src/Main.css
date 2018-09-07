@@ -1,14 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 main {
   font-family: 'Montserrat', sans-serif;
-  padding-top: 80px; }
+  padding-top: 80px;
+  background: #ececec; }
   main > div {
     max-width: 1600px;
     padding: 20px 15px;
     width: 100%;
     margin: 0 auto;
-    background: blue;
-    min-height: 100vh; }
+    min-height: calc(100vh - 80px); }
 
 .header-container {
   height: 80px;
@@ -38,9 +38,10 @@ main {
       justify-content: space-around; }
       .header-container .nav-links-desktop ul li {
         font-size: 22px; }
-        .header-container .nav-links-desktop ul li a {
+        .header-container .nav-links-desktop ul li a, .header-container .nav-links-desktop ul li span {
           color: white;
-          text-decoration: none; }
+          text-decoration: none;
+          cursor: pointer; }
   .header-container .nav-links-mobile-container {
     display: none; }
   @media (max-width: 900px) {
@@ -84,17 +85,91 @@ main {
       .header-container .nav-links-mobile-container .hide {
         transform: translate(300px, 0px); } }
 
-.login-container {
+.home-container {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center; }
-  .login-container .login-display {
+  .home-container .login-display {
     width: 330px;
     height: 300px;
     background: white;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; }
+    justify-content: center;
+    box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.411); }
+
+.mapped-student-container a {
+  margin: 10px;
+  text-decoration: none;
+  color: #0072a7;
+  text-shadow: 0.5px 0.5px 0.4px rgba(0, 0, 0, 0.393); }
+
+.mapped-student-container header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  font-size: 22px;
+  border-bottom: 1px grey solid; }
+
+.mapped-student-container .student-card-container {
+  width: 100%;
+  background: #d8d8d8;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0px 15px 15px;
+  align-items: center; }
+  .mapped-student-container .student-card-container span {
+    font-size: 20px; }
+  .mapped-student-container .student-card-container .percentages-container {
+    display: flex;
+    align-items: center;
+    position: relative; }
+    .mapped-student-container .student-card-container .percentages-container .comps-left {
+      padding-right: 0px;
+      position: absolute;
+      right: 0;
+      left: 0;
+      width: 55px;
+      top: 55%;
+      font-size: 18px;
+      margin: 0 auto; }
+
+.dashboard-container {
+  width: 100%;
+  min-height: calc(100vh - 160px); }
+  .dashboard-container .dashboard-display {
+    width: 100%; }
+
+.student-container h1 {
+  font-size: 36px;
+  color: #6d6d6d;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.411); }
+
+.student-container h2 {
+  font-size: 26px;
+  border-bottom: 1px solid grey;
+  margin: 10px 0 0;
+  padding-bottom: 10px; }
+
+.student-container .comp-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  font-size: 20px;
+  background: #dbdada;
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.418);
+  margin: 10px 0; }
+  .student-container .comp-container > div:not(.status-image-container) {
+    flex: 1; }
+  .student-container .comp-container .status-image-container {
+    width: 30px; }
+    .student-container .comp-container .status-image-container img {
+      width: 100%;
+      cursor: pointer; }

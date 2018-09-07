@@ -4,33 +4,47 @@ import ContextProvider from './components/shared/Context';
 import {BrowserRouter} from 'react-router-dom';
 import './index.css';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import { AppContainer } from 'react-hot-loader';
 
-// ReactDOM.render(
-//     <BrowserRouter>
-//         <App />
-// </BrowserRouter>
-// , document.getElementById('root'));
-// registerServiceWorker();
-
-registerServiceWorker();
-const render = Component => {
-    return ReactDOM.render(
+const render = () => {
+  ReactDOM.render(
+    <AppContainer>
         <BrowserRouter>
           <ContextProvider>
-              <Component />
+              <App />
           </ContextProvider>
         </BrowserRouter>
-      ,
-      document.getElementById('root')
-    );
-  };
+    </AppContainer>,
+    document.getElementById('root')
+  );
+};
+
+render();
+
+if (module.hot) {
+  module.hot.accept('./App', () => {
+    render();
+  });
+}
+
+// registerServiceWorker();
+// const render = Component => {
+//     return ReactDOM.render(
+//         <BrowserRouter>
+//           <ContextProvider>
+//               <Component />
+//           </ContextProvider>
+//         </BrowserRouter>
+//       ,
+//       document.getElementById('root')
+//     );
+//   };
   
-  render(App);
+//   render(App);
   
-  if (module.hot) {
-    module.hot.accept('./App', () => {
-      const NextApp = require('./App').default;
-      render(NextApp);
-    });
-  }
+//   if (module.hot) {
+//     module.hot.accept('./App', () => {
+//       const NextApp = require('./App').default;
+//       render(NextApp);
+//     });
+//   }

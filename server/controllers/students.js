@@ -33,15 +33,26 @@ module.exports = {
         })
     },
     readStudentsByCohort: (req, res)=> {
+        console.log('hit')
         const db = req.app.get('db');
         const {active} = req.query;
         const {cohort} = req.params;
-        console.log(cohort, active);
         db.get_students_by_cohort([cohort, active]).then(cohortStudentsArray => {
-            console.log(cohortStudentsArray)
+
+            console.log('cohortStudentsArray', cohortStudentsArray)
             res.status(200).send(cohortStudentsArray)
         }).catch(err => {
+            console.log(err)
             res.status(404).send(err)
         })
+    },
+    readStudentById: (req, res) => {
+       const db = req.app.get('db');
+       const {id} = req.params;
+       console.log(id)
+       db.get_student_by_id(id).then(student => {
+           console.log(student)
+           res.status(200).send(student);
+       })
     }
 }

@@ -5,6 +5,7 @@ const massive = require('massive');
 const session = require('express-session');
 const login = require('./controllers/login.js');
 const students = require('./controllers/students')
+const userCont = require('./controllers/user')
 require('dotenv').config();
 
 app.use(bodyParser.json());
@@ -12,7 +13,6 @@ app.use(bodyParser.json());
 massive(process.env.CONNECTION_STRING).then((db)=>{
     console.log('connected to database')
     //run init on startup
-    db.init();
     app.set('db', db);
 })
 
@@ -24,17 +24,23 @@ app.use(session({
         // 2 weeks
         maxAge: 60 * 60 * 24 * 14 * 1000
     } 
-}))
+}));
 
-app.post('/api/register', login.register)
-app.post('/api/login', login.login)
+app.get('/api/cool', (req, res)=> res.send('worked!'));
+
+app.post('/api/register', login.register);
+app.post('/api/login', login.login);
+app.post('/api/logout', login.logout);
 
 app.route('/api/students')
 .get(students.readStudents)
-.post(students.createStudent)
+.post(students.createStudent);
 
-app.get('/api/get_students_by_cohort/:cohort', students.readStudentsByCohort)
-app.get('/api/get_student_status/:id', students.readStudentIdAndStatus)
+app.get('/api/get_logged_in_user', userCont.readLoggedInUser);
+
+app.get('/api/get_students_by_cohort/:cohort', students.readStudentsByCohort);
+app.get('/api/get_student_status/:id', students.readStudentIdAndStatus);
+app.get('/api/get_student_by_id/:id', students.readStudentById);
 
 const PORT = 4000;
 app.listen(PORT, ()=> console.log(`Server listening on port ${4000}`));

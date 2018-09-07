@@ -14,20 +14,19 @@ module.exports = {
         })
     },
     login: (req, res)=>{
-        //setting db name variable
         const db = req.app.get('db');
-        //deconstructing username and password
         const { email, password } = req.body;
-
         db.find_user([email]).then(user => {
+            console.log(user);
             if(user.length) {
-                //compare password with known password
                 bcrypt.compare(password, user[0].password).then(passwordsMatch => {
+                    console.log(passwordsMatch);
                     if(passwordsMatch){
                         req.session.user = {
                             name: user[0].name,
                             position: user[0].position,
-                            email: user[0].email
+                            email: user[0].email,
+                            assignedCohort: user[0].assigned_cohort
                         }
                         res.status(200).send(req.session.user)
                     }
@@ -36,5 +35,9 @@ module.exports = {
         }).catch(err => {
             res.status(404).send(`SQL error ${err.detail} error code: ${err.code}`)
         })
+    },
+    logout: (req, res)=> {
+        req.session.destroy();
+        res.end();
     }
 }

@@ -38,9 +38,10 @@
             li {
                 font-size: 22px;
 
-                a {
+                a, span {
                     color: white;
                     text-decoration: none;
+                    cursor: pointer;
                 }
             }
         }

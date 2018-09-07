@@ -12,6 +12,7 @@ id SERIAL PRIMARY KEY NOT NULL
 , password TEXT NOT NULL
 , position TEXT NOT NULL
 , email TEXT UNIQUE
+, assigned_cohort TEXT
 );
 
 
@@ -38,7 +39,7 @@ id SERIAL PRIMARY KEY NOT NULL
 );
 
 --insert dummy data
-INSERT INTO users (name, password, position, email) VALUES ('josh borup', 'password', 'Lead Mentor', 'joshborup@devmounta.in');
+INSERT INTO users (name, password, position, email, assigned_cohort) VALUES ('josh borup', '$2b$12$u4A7tB2U837TTZKXTg37c.UiPcAyi3dw3TOzaC4cJsEeO0uXyV75K', 'Lead Mentor', 'joshborup@devmounta.in', 'wpx6');
 INSERT INTO students (name, cohort, email, active) VALUES ('josh borup', 'wpx3', 'joshborup@gmail.com', true);
 
 
@@ -83,8 +84,6 @@ INSERT INTO competencies (category, competency_name, description) VALUES ('Datab
 
 
 --insert comp tracker
-INSERT INTO status (comp_id, student_id, passed) VALUES (1, 1, TRUE);
-INSERT INTO status (comp_id, student_id, passed) VALUES (2, 1, FALSE);
 
 -- SELECT * FROM students;
 -- SELECT * FROM users;

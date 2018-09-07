@@ -1,15 +1,20 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {HamburgerIcon} from './Icons';
 import MobileLinks from './MobileLinks';
+import { context } from '../shared/Context';
 import { Link } from 'react-router-dom';
 import Logo from '../../styles/media/devmountain_logo.png';
 
-export default class Header extends Component {
+class Header extends PureComponent {
     constructor(){
         super()
         this.state={
             toggle: true
         }
+    }
+
+    componentDidMount(){
+        
     }
 
     toggleMobileLinks = () => {
@@ -22,7 +27,6 @@ export default class Header extends Component {
 
 
     render() {
-        console.log(this.state.toggle);
         return (
             <div className='header-container'>
                 <div>
@@ -30,10 +34,19 @@ export default class Header extends Component {
                         <img src={Logo} alt='dev mountain logo'/>
                     </div>
                     <div className='nav-links-desktop'>
-                        <ul>
-                            <li><Link to='/'>Home</Link></li>
-                            <li><Link to='/login'>Login</Link></li>
-                        </ul>
+                       
+                           {this.props.context.user
+                            ?
+                            <ul>
+                                <li><Link to='/'>Home</Link></li>
+                                <li><span onClick={this.props.context.userMethods.logout}>logout</span></li>
+                            </ul> 
+                            : 
+                           <ul>
+                               <li><Link to='/'>Login</Link></li>
+                            </ul>
+                           }
+                        
                     </div>
                     <MobileLinks toggle={this.state.toggle}>
                         <HamburgerIcon toggleMobileLinks={this.toggleMobileLinks}/>
@@ -44,3 +57,5 @@ export default class Header extends Component {
         );
     }
 }
+
+export default context(Header)
