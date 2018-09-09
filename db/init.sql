@@ -40,7 +40,6 @@ id SERIAL PRIMARY KEY NOT NULL
 
 --insert dummy data
 INSERT INTO users (name, password, position, email, assigned_cohort) VALUES ('josh borup', '$2b$12$u4A7tB2U837TTZKXTg37c.UiPcAyi3dw3TOzaC4cJsEeO0uXyV75K', 'Lead Mentor', 'joshborup@devmounta.in', 'wpx6');
-INSERT INTO students (name, cohort, email, active) VALUES ('josh borup', 'wpx3', 'joshborup@gmail.com', true);
 
 
 --insert tracked comps

@@ -14,7 +14,7 @@ module.exports = {
             email
         }
         db.create_student(newStudent).then(addedStudentId => {
-            db.build_comp_list(addedStudentId[0].id).then(studentsArray => {
+            db.build_comp_list([addedStudentId[0].id, cohort]).then(studentsArray => {
                 res.status(200).send(studentsArray);
         })
             
@@ -37,7 +37,7 @@ module.exports = {
         const db = req.app.get('db');
         const {active} = req.query;
         const {cohort} = req.params;
-        db.get_students_by_cohort([cohort, active]).then(cohortStudentsArray => {
+        db.get_students_by_cohort(cohort).then(cohortStudentsArray => {
 
             console.log('cohortStudentsArray', cohortStudentsArray)
             res.status(200).send(cohortStudentsArray)
@@ -54,5 +54,14 @@ module.exports = {
            console.log(student)
            res.status(200).send(student);
        })
+    },
+    markCompComplete: (req, res) => {
+        const db = req.app.get('db');
+        const {id} = req.params;
+        const {competencyName, passed} = req.query;
+        db.markCompComplete(id, passed, competencyName).then(updatedCompList => {
+            console.log(updatedCompList)
+            res.status(200).send(updatedCompList);
+        }).catch(err => console.log(err));
     }
 }

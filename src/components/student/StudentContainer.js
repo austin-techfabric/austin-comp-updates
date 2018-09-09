@@ -15,12 +15,10 @@ class StudentContainer extends Component {
     }
 
     render() {
-        console.log('test id', this.props.match.params.id)
-        const { student } = this.props.context
-        console.log('student========', student)
+        const { student, user } = this.props.context
         return (
             <div className='student-container'>
-                <StudentDisplay student={student} />
+                <StudentDisplay user={user} student={student} {...this.props} />
             </div>
         );
     }

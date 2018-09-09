@@ -9,7 +9,7 @@ const DashboardDisplay = (props) => {
                 <header>
                     <div>Name</div>
                     <div>Email</div>
-                    <div>Competencies Left</div>
+                    <div>Completion</div>
                 </header>
             {
                 props.students.map((student) => {

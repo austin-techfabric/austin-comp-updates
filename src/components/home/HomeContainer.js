@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import LoginDisplay from './LoginDisplay';
+import {Redirect} from 'react-router-dom';
 import { context } from '../shared/Context';
-import DashboardContainer from './DashboardContainer';
 
 class HomeContainer extends Component {
     state = {
@@ -17,13 +17,10 @@ class HomeContainer extends Component {
 
     render() {
         return (
-            <div className='home-container'>
-                {this.props.context.user
-                    ?
-                    <DashboardContainer />
-                    :
-                    <LoginDisplay login={this.props.context.userMethods.login} changeHandler={this.changeHandler} {...this.state} />                
-                }
+            <div  className='home-container'>
+                
+                <LoginDisplay login={this.props.context.userMethods.login} changeHandler={this.changeHandler} {...this.state} />
+                
             </div>
         );
     }

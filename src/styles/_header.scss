@@ -3,10 +3,12 @@
     height: 80px;
     background:#444444;
     position: fixed;
+    z-index: 2;
     top: 0;
     right: 0;
     left: 0;
     font-family: 'Montserrat', sans-serif;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.404);
 
     >div {
         max-width: 1600px;
@@ -30,12 +32,13 @@
     } 
 
     .nav-links-desktop{
-        width: 300px;
+        width: 650px;
         ul {
             display: flex;
-            justify-content: space-around;
+            justify-content: flex-end;
 
             li {
+                margin: 0 20px;
                 font-size: 22px;
 
                 a, span {

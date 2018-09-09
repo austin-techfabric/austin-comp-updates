@@ -1,28 +1,26 @@
 import React, { Component } from 'react';
 import { context } from '../shared/Context';
-import DashboardDisplay from './DashboardDisplay';
+import CompetenciesDisplay from './CompetenciesDisplay';
 
 class DashboardContainer extends Component {
     constructor(props){
         super(props)
         this.state = {
-            cohort: this.props.context.user.assignedCohort,
-            active: true
+           
         }
     }
     componentDidMount(){
 
-        this.props.context.studentMethods.getStudentsByCohort(this.state.cohort, this.state.active)
+        this.props.context.studentMethods.getStudentsByCohort(this.props.context.cohort, true)
     }
 
     render() {
 
-        console.log(this.props.context.user)
-
-        const { students } = this.props.context;
+        const { students, cohort } = this.props.context;
+        console.log(cohort)
         return (
             <div className='dashboard-container'>
-                <DashboardDisplay students={students} />
+                <CompetenciesDisplay students={students} />
             </div>
         );
     }

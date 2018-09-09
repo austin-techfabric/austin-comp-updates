@@ -38,11 +38,14 @@ class Header extends PureComponent {
                            {this.props.context.user
                             ?
                             <ul>
-                                <li><Link to='/'>Home</Link></li>
+                                <li><Link to='/dashboard'>Dashboard</Link></li>
+                                <li><Link to='/class_list'>Class&nbsp;List</Link></li>
+                                <li><Link to='/competencies'>Competencies</Link></li>
                                 <li><span onClick={this.props.context.userMethods.logout}>logout</span></li>
                             </ul> 
                             : 
                            <ul>
+                               <li></li>
                                <li><Link to='/'>Login</Link></li>
                             </ul>
                            }

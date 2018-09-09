@@ -6,7 +6,7 @@ main {
     background: rgb(236, 236, 236);
 
     > div {
-        max-width: 1600px;
+        max-width: 1300px;
         padding: 20px 15px;
         width: 100%;
         margin: 0 auto;
@@ -26,3 +26,4 @@ main {
 @import './styles/_student-card.scss';
 @import './styles/_dashboard.scss';
 @import './styles/_student-container.scss';
+@import './styles/_classlist.scss';

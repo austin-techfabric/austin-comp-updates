@@ -31,4 +31,5 @@ INSERT INTO status (comp_id, student_id, passed) VALUES (31, $1, FALSE);
 INSERT INTO status (comp_id, student_id, passed) VALUES (32, $1, FALSE);
 INSERT INTO status (comp_id, student_id, passed) VALUES (33, $1, FALSE);
 INSERT INTO status (comp_id, student_id, passed) VALUES (34, $1, FALSE);
-SELECT * FROM students;
+SELECT * FROM students
+WHERE cohort = $2;

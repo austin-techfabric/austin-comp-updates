@@ -3,6 +3,9 @@ import {Switch, Route} from 'react-router-dom';
 import Header from "./components/shared/Header";
 import HomeContainer from './components/home/HomeContainer';
 import StudentContainer from './components/student/StudentContainer';
+import ClassListContainer from './components/classlist/ClassListContainer';
+import CompetenciesContainer from './components/Competencies/CompetenciesContainer';
+import DashboardContainer from './components/Dashboard/DashboardContainer';
 import './Main.css';
 
 class App extends Component {
@@ -13,6 +16,9 @@ class App extends Component {
        <main>
           <Switch>
             <Route exact path='/' component={HomeContainer} />
+            <Route path ='/dashboard' component={DashboardContainer}/>
+            <Route path='/class_list' component={ClassListContainer} />
+            <Route path='/competencies' component={CompetenciesContainer} />
             <Route path='/student/:id' component={StudentContainer}/>
             <Route path='*' render={() => {
               return <div style={{textAlign:"center"}}>
