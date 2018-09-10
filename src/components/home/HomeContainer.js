@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import LoginDisplay from './LoginDisplay';
-import {Redirect} from 'react-router-dom';
 import { context } from '../shared/Context';
 
 class HomeContainer extends Component {

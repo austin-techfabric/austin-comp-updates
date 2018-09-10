@@ -26,7 +26,7 @@ const ClassListDisplay = (props) => {
             <div>
                 Name: <input name='name' onChange={(e)=> props.changeHandler(e.target.name, e.target.value)} value={props.name}/>
                 Email: <input name='email' onChange={(e)=> props.changeHandler(e.target.name, e.target.value)} value={props.email}/>
-                <button onClick={()=> props.addStudent(props.name, props.email, props.cohort)}>Submit</button>
+                <button onClick={()=> props.addStudent(props.name, props.email, props.cohort)}>Add Student</button>
             </div>
 
             <div>
