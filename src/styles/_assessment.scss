@@ -1,0 +1,26 @@
+.assessment-container {
+
+    h1 {
+        font-size: 36px;
+        color: rgb(109, 109, 109);
+        text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.411);
+    }
+
+    .percentages-container{
+        min-width: 200px;
+
+        .bar-divider {
+            font-size: 24px;
+       }
+    }
+
+    .assessments-left {
+        margin: 0 10px;
+    }
+
+    .assessments-left-number {
+        width: 200px;
+        margin: 0 10px;
+    }
+
+}

@@ -52,7 +52,15 @@ class ContextProvider extends Component {
                             email:''
                         })
                     })
-                }
+                },
+                getStudentsAssessments: () => {
+                    axios.get(`/api/students_assessments/${this.state.cohort || this.state.user.assignedCohort}`).then(response => {
+                        console.log('======================',response)
+                        this.setState({
+                            students: response.data
+                        })
+                    })
+                },
             },
             userMethods: {
                 login: (email, password) => {

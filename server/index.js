@@ -43,5 +43,7 @@ app.get('/api/get_student_status/:id', students.readStudentIdAndStatus);
 app.get('/api/get_student_by_id/:id', students.readStudentById);
 app.put(`/api/mark_competency_complete/:id`, students.markCompComplete)
 
+app.get('/api/students_assessments/:cohort', students.getStudentsAssessments)
+
 const PORT = 4000;
 app.listen(PORT, ()=> console.log(`Server listening on port ${4000}`));

@@ -38,6 +38,18 @@ id SERIAL PRIMARY KEY NOT NULL
 , passed BOOLEAN NOT NULL
 );
 
+CREATE TABLE assessments(
+id SERIAL PRIMARY KEY NOT NULL
+, assessment_name TEXT NOT NULL
+);
+
+CREATE TABLE assessments_status(
+id SERIAL PRIMARY KEY NOT NULL
+, assess_id INTEGER NOT NULL REFERENCES assessments(id)
+, student_id INTEGER NOT NULL REFERENCES students(id)
+, passed BOOLEAN NOT NULL
+);
+
 --insert dummy data
 INSERT INTO users (name, password, position, email, assigned_cohort) VALUES ('josh borup', '$2b$12$u4A7tB2U837TTZKXTg37c.UiPcAyi3dw3TOzaC4cJsEeO0uXyV75K', 'Lead Mentor', 'joshborup@devmounta.in', 'wpx6');
 
@@ -78,17 +90,33 @@ INSERT INTO competencies (category, competency_name, description) VALUES ('Datab
 INSERT INTO competencies (category, competency_name, description) VALUES ('Database','Massive_1', 'can connect to their database in their NodeJS servers using Massive');
 INSERT INTO competencies (category, competency_name, description) VALUES ('Database','Massive_2', 'can run SQL commands in their NodeJS servers using Massive');
 
+INSERT INTO assessments (assessment_name)
+VALUES ('Arrays-1')
+,('Data Types')
+,('Functions 1')
+,('Functions 2')
+,('Scope')
+,('For Loops')
+,('Callbacks 1')
+,('Callbacks 2')
+,('Arrays-2')
+,('Arrays-3')
+,('Objects')
+,('ES6')
+,('Async + Promises')
+,('JSON')
+,('Closures')
+,('Context 1')
+,('Context 2')
+,('Constructors - classes')
+,('Constructors - functions')
+,('Prototypes')
+,('Built-In Prototypes')
 
 
 
+SELECT * FROM students;
+SELECT * FROM users;
+SELECT * FROM competencies;
+SELECT * FROM status;
 
---insert comp tracker
-
--- SELECT * FROM students;
--- SELECT * FROM users;
--- SELECT * FROM competencies;
--- SELECT * FROM status;
-
--- SELECT students.*, comp.category, comp.competency_name, comp.description, status.passed FROM students
--- JOIN status on(status.student_id = students.id)
--- JOIN competencies as comp on(comp.id = status.comp_id);

@@ -34,19 +34,31 @@ main {
       border-right: grey solid 1px;
       padding-right: 15px; }
   .header-container .nav-links-desktop {
-    width: 650px; }
+    width: 650px;
+    height: 100%; }
     .header-container .nav-links-desktop > ul {
       display: flex;
-      justify-content: flex-end; }
+      justify-content: flex-end;
+      align-items: center;
+      height: 100%; }
       .header-container .nav-links-desktop > ul .sub-menu:hover .sub-header-menu {
-        height: 200px; }
+        height: 150px;
+        border-bottom-right-radius: 3px;
+        border-bottom-left-radius: 3px; }
       .header-container .nav-links-desktop > ul li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin: 0 20px;
+        height: 100%;
         font-size: 22px;
         position: relative; }
         .header-container .nav-links-desktop > ul li a, .header-container .nav-links-desktop > ul li span {
           color: white;
-          text-decoration: none;
+          text-decoration: none; }
+        .header-container .nav-links-desktop > ul li span {
+          cursor: context-menu; }
+        .header-container .nav-links-desktop > ul li a {
           cursor: pointer; }
         .header-container .nav-links-desktop > ul li .sub-header-menu {
           position: absolute;
@@ -54,11 +66,12 @@ main {
           overflow: hidden;
           width: 200px;
           background: #444444;
-          padding: 0;
+          top: 75px;
           left: -20px;
-          transition: .3s; }
+          transition: .3s;
+          box-shadow: 0 4px 5px rgba(0, 0, 0, 0.404); }
           .header-container .nav-links-desktop > ul li .sub-header-menu > div {
-            height: 200px;
+            height: 150px;
             display: flex;
             flex-direction: column;
             justify-content: space-evenly; }
@@ -284,3 +297,20 @@ main {
   margin: 15px 0;
   padding: 15px;
   box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.418); }
+
+.assessment-container h1 {
+  font-size: 36px;
+  color: #6d6d6d;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.411); }
+
+.assessment-container .percentages-container {
+  min-width: 200px; }
+  .assessment-container .percentages-container .bar-divider {
+    font-size: 24px; }
+
+.assessment-container .assessments-left {
+  margin: 0 10px; }
+
+.assessment-container .assessments-left-number {
+  width: 200px;
+  margin: 0 10px; }

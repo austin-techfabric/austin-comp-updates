@@ -33,24 +33,40 @@
 
     .nav-links-desktop{
         width: 650px;
+        height: 100%;
        >ul {
-            display: flex;
-            justify-content: flex-end;
+        display:  flex;
+        justify-content:  flex-end;
+        align-items:  center;
+        height: 100%;
 
             .sub-menu:hover .sub-header-menu {
-                height: 200px;
+                height: 150px;
+                border-bottom-right-radius: 3px;
+                border-bottom-left-radius: 3px;
             }
 
             li {
+                display:  flex;
+                justify-content:  center;
+                align-items:  center;
                 margin: 0 20px;
+                height: 100%;
                 font-size: 22px;
                 position: relative;
                 a, span {
                     color: white;
                     text-decoration: none;
-                    cursor: pointer;
+                    
                 }
 
+                span {
+                    cursor: context-menu;
+                }
+
+                a {
+                    cursor: pointer;
+                }
 
                 .sub-header-menu {
                     
@@ -58,14 +74,14 @@
                     height: 0;
                     overflow: hidden;
                     width: 200px;
-                   
                     background:#444444;
-                    padding: 0;
+                    top: 75px;
                     left: -20px;
                     transition: .3s;
+                    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.404);
 
                     >div {
-                        height: 200px;
+                        height: 150px;
                         display: flex;
                         flex-direction: column;
                         justify-content: space-evenly;

@@ -31,5 +31,28 @@ INSERT INTO status (comp_id, student_id, passed) VALUES (31, $1, FALSE);
 INSERT INTO status (comp_id, student_id, passed) VALUES (32, $1, FALSE);
 INSERT INTO status (comp_id, student_id, passed) VALUES (33, $1, FALSE);
 INSERT INTO status (comp_id, student_id, passed) VALUES (34, $1, FALSE);
+
+INSERT INTO assessments_status (assess_id, student_id, passed) VALUES (1, $1, FALSE);
+INSERT INTO assessments_status (assess_id, student_id, passed) VALUES (2, $1, FALSE);
+INSERT INTO assessments_status (assess_id, student_id, passed) VALUES (3, $1, FALSE);
+INSERT INTO assessments_status (assess_id, student_id, passed) VALUES (4, $1, FALSE);
+INSERT INTO assessments_status (assess_id, student_id, passed) VALUES (5, $1, FALSE);
+INSERT INTO assessments_status (assess_id, student_id, passed) VALUES (6, $1, FALSE);
+INSERT INTO assessments_status (assess_id, student_id, passed) VALUES (7, $1, FALSE);
+INSERT INTO assessments_status (assess_id, student_id, passed) VALUES (8, $1, FALSE);
+INSERT INTO assessments_status (assess_id, student_id, passed) VALUES (9, $1, FALSE);
+INSERT INTO assessments_status (assess_id, student_id, passed) VALUES (10, $1, FALSE);
+INSERT INTO assessments_status (assess_id, student_id, passed) VALUES (11, $1, FALSE);
+INSERT INTO assessments_status (assess_id, student_id, passed) VALUES (12, $1, FALSE);
+INSERT INTO assessments_status (assess_id, student_id, passed) VALUES (13, $1, FALSE);
+INSERT INTO assessments_status (assess_id, student_id, passed) VALUES (14, $1, FALSE);
+INSERT INTO assessments_status (assess_id, student_id, passed) VALUES (15, $1, FALSE);
+INSERT INTO assessments_status (assess_id, student_id, passed) VALUES (16, $1, FALSE);
+INSERT INTO assessments_status (assess_id, student_id, passed) VALUES (17, $1, FALSE);
+INSERT INTO assessments_status (assess_id, student_id, passed) VALUES (18, $1, FALSE);
+INSERT INTO assessments_status (assess_id, student_id, passed) VALUES (19, $1, FALSE);
+INSERT INTO assessments_status (assess_id, student_id, passed) VALUES (20, $1, FALSE);
+INSERT INTO assessments_status (assess_id, student_id, passed) VALUES (21, $1, FALSE);
+
 SELECT * FROM students
 WHERE cohort = $2;

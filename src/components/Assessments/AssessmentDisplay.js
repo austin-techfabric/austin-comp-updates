@@ -1,25 +1,27 @@
 import React from 'react';
-import StudentCard from '../shared/StudentCard';
+import StudentAssessmentCard from './StudentAssessmentCard';
 
-const DashboardDisplay = (props) => {
-    
+const AssessmentDisplay = (props) => {
+
+    console.log(props.students)
     return (
         <div className='dashboard-display'>
             <div className='mapped-student-container'>
-                <h1>Competencies</h1>
+                <h1>Assessments</h1>
                 <header>
                     <div>Name</div>
                     <div>Email</div>
                     <div>Completion</div>
                 </header>
-            {
+                {
                 props.students.map((student) => {
-                    return <StudentCard key={student.id} {...student} />
+                    return <StudentAssessmentCard key={student.id} {...student} />
                 })
             }
             </div>
         </div>
     );
+
 };
 
-export default DashboardDisplay;
+export default AssessmentDisplay;

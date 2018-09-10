@@ -63,5 +63,19 @@ module.exports = {
             console.log(updatedCompList)
             res.status(200).send(updatedCompList);
         }).catch(err => console.log(err));
-    }
+    },
+    getStudentsAssessments: (req, res)=> {
+        const db = req.app.get('db');
+        const {active} = req.query;
+        const {cohort} = req.params;
+        console.log('', cohort)
+        db.get_passed_assessments([cohort, false]).then(cohortStudentsArray => {
+
+            console.log('cohortStudentsArray', cohortStudentsArray)
+            res.status(200).send(cohortStudentsArray)
+        }).catch(err => {
+            console.log(err)
+            res.status(404).send(err)
+        })
+    },
 }
