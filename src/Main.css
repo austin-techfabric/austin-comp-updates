@@ -35,16 +35,33 @@ main {
       padding-right: 15px; }
   .header-container .nav-links-desktop {
     width: 650px; }
-    .header-container .nav-links-desktop ul {
+    .header-container .nav-links-desktop > ul {
       display: flex;
       justify-content: flex-end; }
-      .header-container .nav-links-desktop ul li {
+      .header-container .nav-links-desktop > ul .sub-menu:hover .sub-header-menu {
+        height: 200px; }
+      .header-container .nav-links-desktop > ul li {
         margin: 0 20px;
-        font-size: 22px; }
-        .header-container .nav-links-desktop ul li a, .header-container .nav-links-desktop ul li span {
+        font-size: 22px;
+        position: relative; }
+        .header-container .nav-links-desktop > ul li a, .header-container .nav-links-desktop > ul li span {
           color: white;
           text-decoration: none;
           cursor: pointer; }
+        .header-container .nav-links-desktop > ul li .sub-header-menu {
+          position: absolute;
+          height: 0;
+          overflow: hidden;
+          width: 200px;
+          background: #444444;
+          padding: 0;
+          left: -20px;
+          transition: .3s; }
+          .header-container .nav-links-desktop > ul li .sub-header-menu > div {
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly; }
   .header-container .nav-links-mobile-container {
     display: none; }
   @media (max-width: 900px) {

@@ -40,7 +40,15 @@ class Header extends PureComponent {
                             <ul>
                                 <li><Link to='/dashboard'>Dashboard</Link></li>
                                 <li><Link to='/class_list'>Class&nbsp;List</Link></li>
-                                <li><Link to='/competencies'>Competencies</Link></li>
+                                <li className='sub-menu'>
+                                    <a href='#'>Assignments</a>
+                                    <ul className='sub-header-menu'>
+                                        <div>
+                                            <li><Link to='/competencies'>Competencies</Link></li>
+                                            <li><Link to='/competencies'>Assessments</Link></li>
+                                        </div>
+                                    </ul>
+                                </li>
                                 <li><span onClick={this.props.context.userMethods.logout}>logout</span></li>
                             </ul> 
                             : 

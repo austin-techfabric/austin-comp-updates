@@ -33,19 +33,46 @@
 
     .nav-links-desktop{
         width: 650px;
-        ul {
+       >ul {
             display: flex;
             justify-content: flex-end;
+
+            .sub-menu:hover .sub-header-menu {
+                height: 200px;
+            }
 
             li {
                 margin: 0 20px;
                 font-size: 22px;
-
+                position: relative;
                 a, span {
                     color: white;
                     text-decoration: none;
                     cursor: pointer;
                 }
+
+
+                .sub-header-menu {
+                    
+                    position: absolute;
+                    height: 0;
+                    overflow: hidden;
+                    width: 200px;
+                   
+                    background:#444444;
+                    padding: 0;
+                    left: -20px;
+                    transition: .3s;
+
+                    >div {
+                        height: 200px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-evenly;
+                    }
+                }
+
+                
             }
         }
     }
