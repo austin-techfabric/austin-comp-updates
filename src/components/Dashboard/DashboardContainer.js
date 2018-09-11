@@ -7,7 +7,6 @@ class DashboardContainer extends Component {
         super(props)
 
         this.props.context.studentMethods.getAssignmentsByCohort()
-        console.log(this.props)
     }
 
     render() {
