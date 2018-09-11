@@ -41,9 +41,13 @@ app.get('/api/get_logged_in_user', userCont.readLoggedInUser);
 app.get('/api/get_students_by_cohort/:cohort', students.readStudentsByCohort);
 app.get('/api/get_student_status/:id', students.readStudentIdAndStatus);
 app.get('/api/get_student_by_id/:id', students.readStudentById);
-app.put(`/api/mark_competency_complete/:id`, students.markCompComplete)
+app.put(`/api/mark_competency_complete/:id`, students.markCompComplete);
 
-app.get('/api/students_assessments/:cohort', students.getStudentsAssessments)
+app.get('/api/students_assessments/:cohort', students.getStudentsAssessments);
+app.get('/api/get_student_assessments_by_id/:id', students.getStudentAssessmentsById);
+app.put('/api/mark_assessment_complete/:id', students.markAssessmentComplete);
+
+app.get('/api/get_assessments_by_cohort/:assignment/:cohort', students.getFullCohortStats);
 
 const PORT = 4000;
 app.listen(PORT, ()=> console.log(`Server listening on port ${4000}`));

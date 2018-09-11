@@ -1,0 +1,1 @@
+SELECT assessment_name FROM assessments;

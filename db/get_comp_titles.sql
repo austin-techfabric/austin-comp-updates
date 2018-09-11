@@ -1,0 +1,1 @@
+SELECT competency_name FROM competencies;

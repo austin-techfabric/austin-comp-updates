@@ -3,7 +3,7 @@ import StudentAssessmentCard from './StudentAssessmentCard';
 
 const AssessmentDisplay = (props) => {
 
-    console.log(props.students)
+    
     return (
         <div className='dashboard-display'>
             <div className='mapped-student-container'>

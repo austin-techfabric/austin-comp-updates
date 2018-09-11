@@ -1,6 +1,4 @@
-
-.student-container {
-
+.student-assessment-display {
     h1 {
         font-size: 36px;
         color: rgb(109, 109, 109);
@@ -9,14 +7,13 @@
 
     h2 {
         font-size: 26px;
-        
         margin: 10px 0 0;
         padding-bottom: 10px;
     }
-
+    
     .st-dis-header-container {
         display: flex;
-        margin: 10px 0 0;
+        margin: 10px 0;
         justify-content: space-between;
         align-items: center;
         border-bottom: 1px solid grey;
@@ -24,7 +21,8 @@
         .header-and-back-button-container {
             @extend %flex-column-center-end;
             padding: 0 15px;
-
+            
+            
             button {
                 height: 30px;
                 background: $button-color;
@@ -36,30 +34,34 @@
             }
         }
     }
+
+    .assess-list-container {
+
+        .assess-container {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            font-size: 20px;
+            background: rgb(219, 218, 218);
+            box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.418);
+            margin: 10px 0;
     
-    .comp-container {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px;
-        font-size: 20px;
-        background: rgb(219, 218, 218);
-        box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.418);
-        margin: 10px 0;
+            >div:not(.status-image-container) {
+                flex: 1;
+            }
 
-        >div:not(.status-image-container) {
-            flex: 1;
-        }
-
-        .status-image-container {
-            width: 30px;
-            height: 30px;
-            img{
-                width: 100%;
-                cursor: pointer;
+            .status-image-container {
+                width: 30px;
+                height: 30px;
+                img{
+                    width: 100%;
+                    cursor: pointer;
+                }
             }
         }
+
     }
 }

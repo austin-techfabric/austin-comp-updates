@@ -2,8 +2,32 @@
     width: 100%;
     min-height: calc(100vh - 160px);
 
-    
+    header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid grey;
+        padding-bottom: 5px;
+    }
 
+    header > div {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+
+    header > div:nth-child(2){
+        text-align: center;
+        
+    }
+
+    .dashboard-display-full-class {
+
+    }
+    
     .dashboard-display {
         width: 100%;
     }
@@ -11,14 +35,65 @@
     h1 {
         font-size: 36px;
         color: rgb(109, 109, 109);
-        text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.411);
+        text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.711);
     }
 
     h2 {
-        font-size: 26px;
+        font-size: 22px;
         
-        margin: 10px 0 0;
+        margin: 10px 10px 0 0;
         padding-bottom: 10px;
+    }
+
+    .assigned-cohort, .spacer {
+        margin:0 10px;
+    }
+
+    .dashboard-name {
+        margin:0 10px 0 0;
+    }
+
+    .overview-container {
+        min-height: 400px;
+        display: flex;
+        padding: 10px;
+        
+        >div {
+            flex: 1;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+        }
+        >div:not(:nth-child(1)) {
+            flex: 4;
+            display: flex;
+            justify-content: center;
+        }
+        >div:not(:nth-child(2)) {
+            font-size: 16px;
+            padding-top: 10px;
+            span {
+                margin: 0 10px;
+            }
+            select {
+                margin:0 10px;
+                font-size: 16px;
+            }
+        }
+        .type-container {
+            margin: 10px 0 0;
+        }
+        button {
+            width: 150px;
+            color: white;
+            background: $button-color;
+            font-size: 16px;
+            border: none;
+            border-radius: $button-border-radius;
+            box-shadow: 0 4px 5px rgba(0, 0, 0, 0.411);
+            margin: 10px 0;
+        }
     }
 
 }

@@ -11,7 +11,8 @@ const StudentAssessmentCard = (props) => {
            borderRadius: '15px',
            overflow: 'hidden',
            margin:'0 10px',
-           boxShadow:'1px 3px 4px rgba(0,0,0,0.6)'
+           boxShadow:'1px 3px 4px rgba(0,0,0,0.6)',
+           transition: '.3s'
         },
         successBar:{
             maxWidth:'150px',
@@ -20,20 +21,22 @@ const StudentAssessmentCard = (props) => {
             background: '#30cc30',
             boxShadow:'1px 3px 4px rgba(0,0,0,0.6)',
             borderRight: 'grey solid 1px',
-            position:'relative'
+            position:'relative',
+            transition: '.3s'
         },
         leftBar:{
             maxWidth:'150px',
-            flex:21,
+            flex:21 - props.assessments_passed,
             height:'20px',
-            background: '#f33a30'
+            background: '#f33a30',
+            transition: '.3s'
         }
     }
 
 
 
     return (
-        <Link to={`#`}>
+        <Link to={`/assessments/student/${props.id}`}>
         <div className='student-card-container'>
             <span className='student-name'>{props.name}</span>
             <span className='student-email'>{props.email}</span>
@@ -42,7 +45,7 @@ const StudentAssessmentCard = (props) => {
                     <div style={style.successBar}></div>
                     <div style={style.leftBar}></div>
                 </div>
-                <span className='assessments-left'>{parseInt(((props.assessments_passed / 21 * 100)))}%</span>
+                <span className='assessments-left'>{parseInt(((props.assessments_passed / 21 * 100)), 10)}%</span>
                 <span className='bar-divider'>|</span>
                 <span className='assessments-left-number'>{props.assessments_passed} / 21</span>
             </div>

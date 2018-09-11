@@ -30,7 +30,10 @@ const StudentDisplay = (props) => {
                     <h1>{props.student[0].name} | {props.student[0].cohort}</h1>
                     <h2>{props.student[0].email}</h2>
                 </div>
-                <h1>{parseInt(percentageComplete)} % Complete </h1>
+                <div className='header-and-back-button-container'>
+                    <h1>{parseInt(percentageComplete)} % Complete </h1>
+                    <button onClick={props.history.goBack}>Back</button>
+                </div>
             </div>
                 : ''
             }

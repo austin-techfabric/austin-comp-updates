@@ -78,4 +78,82 @@ module.exports = {
             res.status(404).send(err)
         })
     },
+    getStudentAssessmentsById: (req, res) => {
+        const db = req.app.get('db');
+        const { id } = req.params;
+        db.get_passed_assessment_by_id(id).then((studentAssessments) => {
+            res.status(200).send(studentAssessments)
+        })
+    },
+    markAssessmentComplete: (req, res) => { 
+        const db = req.app.get('db');
+        const {id} = req.params;
+        const  {assessmentName, passed} = req.query;
+        db.mark_assessment_complete(id, passed, assessmentName).then((updatedAssessmentList) => {
+            res.status(200).send(updatedAssessmentList);
+        }).catch(err => console.log(err));
+    },
+    getFullCohortStats: (req, res) => {
+        const db = req.app.get('db');
+        const {assignment, cohort} = req.params;
+        console.log(cohort, assignment)
+        if(assignment === 'assessments'){
+            db.get_assess_titles().then(assessTitles => {
+                let assessArray = assessTitles.map((title) => {
+                    return {title: title.assessment_name, count: 0}
+                });
+
+                db.full_class_stats_asses([true, cohort]).then(assessments => {
+                    let assessResponse = assessArray.map((title) => {
+                            let index = assessments.findIndex(actual => actual.assessment_name == title.title)
+                            if(index !== -1){
+                                return {name: assessments[index].assessment_name, count: +assessments[index].count}
+                            }else{
+                                return {name: title.title, count: +title.count}
+                            }
+                        })
+
+                        console.log(assessResponse);
+                    res.status(200).send(assessResponse)
+                })
+            })
+            
+        }else if (assignment === 'competencies'){
+            db.get_comp_titles().then(compTitles => {
+                let compArray = compTitles.map((title) => {
+                        return {title: title.competency_name, count: 0}
+                    });
+                console.log('test comptitles',compArray);
+                db.full_class_stats_comps([true, cohort]).then(competencies => {
+                    console.log(competencies);
+                    let compResponse = compArray.map((title) => {
+                            let index = competencies.findIndex(actual => actual.competency_name == title.title)
+                            if(index !== -1){
+                                return {name: competencies[index].competency_name, count: +competencies[index].count}
+                            }else{
+                                return {name: title.title, count: +title.count}
+                            }
+                        })
+
+                        console.log(compResponse);
+                    res.status(200).send(compResponse)
+                })
+            })
+        }
+    }
 }
+
+
+// const titles = ["Arrays-1", "Arrays-2", "Arrays-3",  "Async + Promises", "Built-In Prototypes", "Callbacks 1", "Callbacks 2", "Closures", "Constructors - classes", "Constructors - functions", "Context 1", "Context 2", "Data Types", "ES6", "For Loops", "Functions 1", "Functions 2", "Scope", "JSON", "Objects", "Prototypes"];
+// const fixedArray = titles.map((title) => {
+//     return {title: title, count: 0}
+// });
+
+// const count = fixedArray.map((title) => {
+//     let index = props.context.assignments.findIndex(actual => actual.assessment_name === title.title)
+//     if(index !== -1){
+//         return props.context.assignments[index].count
+//     }else{
+//         return title.count
+//     }
+// })

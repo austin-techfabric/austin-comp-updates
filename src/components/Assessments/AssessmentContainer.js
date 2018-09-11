@@ -10,7 +10,7 @@ class AssessmentContainer extends Component {
         const { students } = this.props.context;
         return (
             <div className='assessment-container'>
-                <AssessmentDisplay students={students}/>
+                <AssessmentDisplay {...this.props} students={students}/>
             </div>
         );
     }

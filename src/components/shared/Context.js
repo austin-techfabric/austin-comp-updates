@@ -13,6 +13,8 @@ class ContextProvider extends Component {
             name:'',
             email:'',
             user:'',
+            assignmentType: 'assessments',
+            assignments: [],
             student:[],
             students: [],
             studentMethods:{
@@ -44,6 +46,13 @@ class ContextProvider extends Component {
                         })
                     })
                 },
+                markAssessComplete: (assessmentName, id, passed) => {
+                    axios.put(`/api/mark_assessment_complete/${id}?assessmentName=${assessmentName}&passed=${passed}`).then(({data: student}) => {
+                        this.setState({
+                            student: student
+                        })
+                    })
+                },
                 addStudent: (name, email, cohort) => {
                     axios.post(`/api/students`, {name, email, cohort, active: true}).then(({data: students}) => {
                         this.setState({
@@ -55,20 +64,38 @@ class ContextProvider extends Component {
                 },
                 getStudentsAssessments: () => {
                     axios.get(`/api/students_assessments/${this.state.cohort || this.state.user.assignedCohort}`).then(response => {
-                        console.log('======================',response)
                         this.setState({
                             students: response.data
                         })
                     })
                 },
+                getStudentAssessmentById: (id) => {
+                    axios.get(`/api/get_student_assessments_by_id/${id}`).then(({data: student}) => {
+                        this.setState({
+                            student: student
+                        })
+                    })
+                },
+                getAssignmentsByCohort: () => {
+                    let statToGrab = this.state.assignmentType || 'assessments';
+                    axios.get(`/api/get_assessments_by_cohort/${statToGrab}/${this.state.cohort || this.state.user.assignedCohort}`).then(({data: assignments}) => {
+                        console.log(assignments)
+                        this.setState({
+                            assignments: assignments
+                        })
+                    })
+                },
+                
             },
             userMethods: {
                 login: (email, password) => {
-                    
                     axios.post('/api/login', {email, password}).then(({data: user})=>{
                         this.setState({
                             user: user
-                        }, this.props.history.push('/dashboard'))
+                        }, () => {
+                            this.state.studentMethods.getAssignmentsByCohort()
+                            this.props.history.push('/dashboard')
+                        })
                     })
                 },
                 getUser: () => {
@@ -88,13 +115,11 @@ class ContextProvider extends Component {
                 }
             },
             changeHandler: (key, value)=> {
-                
                 this.setState({
                     [key]:value
                 })
             },
             changeCohortHandler: (key, value)=> {
-                console.log(key, value)
                 axios.get(`/api/get_students_by_cohort/${value}/?active=${true}`).then(({data: students}) => {
                     console.log('students :', students);
                     this.setState({
@@ -107,6 +132,7 @@ class ContextProvider extends Component {
     }
 
     componentDidMount(){
+        this.state.studentMethods.getAssignmentsByCohort()
         if(!this.state.user){
             this.state.userMethods.getUser();
         }
