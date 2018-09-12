@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ClassListDisplay from './ClassListDisplay';
+import {Redirect} from 'react-router-dom';
 import {context} from '../shared/Context';
 
 class ClassListContainer extends Component {
@@ -19,7 +20,7 @@ class ClassListContainer extends Component {
         const {students, changeHandler, changeCohortHandler, name, email, cohort, user} = this.props.context
         return (
             <div className='class-list-container'>
-                <ClassListDisplay cohort={cohort || user.assignedCohort} addStudent={this.props.context.studentMethods.addStudent} name={name} email={email} changeHandler={changeHandler} changeCohortHandler={changeCohortHandler} students={students} user={user}/>
+                {this.props.context.user ?  <ClassListDisplay cohort={cohort || user.assignedCohort} addStudent={this.props.context.studentMethods.addStudent} name={name} email={email} changeHandler={changeHandler} changeCohortHandler={changeCohortHandler} students={students} user={user}/> : <Redirect to='/' />}
             </div>
         );
     }

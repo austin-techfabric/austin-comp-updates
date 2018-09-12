@@ -8,6 +8,7 @@ import CompetenciesContainer from './components/Competencies/CompetenciesContain
 import DashboardContainer from './components/Dashboard/DashboardContainer';
 import AssessmentContainer from './components/Assessments/AssessmentContainer';
 import AssessmentStudentViewContainer from './components/AssessmentStudentView/AssessmentStudentViewContainer';
+import StaffContainer from './components/staff/StaffContainer';
 import './Main.css';
 
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={HomeContainer} />
             <Route path ='/dashboard' component={DashboardContainer}/>
+            <Route path='/staff' component={StaffContainer} />
             <Route path='/class_list' component={ClassListContainer} />
             <Route exact path='/assessments' component={AssessmentContainer} />
             <Route path='/assessments/student/:id' component={AssessmentStudentViewContainer}/>

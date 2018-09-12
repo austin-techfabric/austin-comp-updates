@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import StudentDisplay from './StudentDisplay';
+import {Redirect} from 'react-router-dom';
 import {context} from '../../components/shared/Context'; 
 
 class StudentContainer extends Component {
@@ -18,7 +19,7 @@ class StudentContainer extends Component {
         const { student, user } = this.props.context
         return (
             <div className='student-container'>
-                <StudentDisplay user={user} student={student} {...this.props} />
+                {this.props.context.user ? <StudentDisplay user={user} student={student} {...this.props} /> : <Redirect to='/' />}
             </div>
         );
     }

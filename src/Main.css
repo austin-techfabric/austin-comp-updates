@@ -437,3 +437,11 @@ main {
     .student-assessment-display .assess-list-container .assess-container .status-image-container img {
       width: 100%;
       cursor: pointer; }
+
+.staff-display header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid grey; }
+  .staff-display header h1 {
+    font-size: 36px;
+    color: #6d6d6d;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.711); }

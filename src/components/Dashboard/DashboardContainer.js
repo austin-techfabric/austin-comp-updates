@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DashboardDisplay from './DashboardDisplay';
+import {Redirect} from 'react-router-dom';
 import {context} from '../shared/Context';
 
 class DashboardContainer extends Component {
@@ -12,7 +13,7 @@ class DashboardContainer extends Component {
     render() {
         return (
             <div className='dashboard-container'>
-                <DashboardDisplay {...this.props}/>
+                {this.props.context.user ? <DashboardDisplay {...this.props}/> : <Redirect to='/' />}
             </div>
         );
     }

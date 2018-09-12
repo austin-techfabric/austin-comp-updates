@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { context } from '../shared/Context';
+import {Redirect} from 'react-router-dom';
 import CompetenciesDisplay from './CompetenciesDisplay';
 
 class DashboardContainer extends Component {
@@ -20,7 +21,7 @@ class DashboardContainer extends Component {
         console.log(cohort)
         return (
             <div className='dashboard-container'>
-                <CompetenciesDisplay students={students} />
+                {this.props.context.user ? <CompetenciesDisplay students={students} /> : <Redirect to='/' />}
             </div>
         );
     }
