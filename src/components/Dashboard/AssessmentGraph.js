@@ -7,11 +7,14 @@ const Overview = (props) => {
     const count = props.context.assignments.map(items => {
         return items.count
     })
+
+    console.log()
+
     const data = {
         labels:titles,
         datasets: [
           {
-            label: 'passed',
+            
             backgroundColor: 'rgba(255,99,132,0.2)',
             borderColor: 'rgba(255,99,132,1)',
             borderWidth: 1,
@@ -24,16 +27,16 @@ const Overview = (props) => {
 
  
       const options = {
+        legend: { display: false },
         scales: {
             xAxes: [{
                 beginAtZero: true,
                 ticks: {
                     autoSkip: false,
-                    min: 0,
                 },
                 scaleLabel: {
                     display: true,
-                    labelString: 'Assessments'
+                    labelString: props.context.assignmentType
                   }
                 
             }],
@@ -41,19 +44,22 @@ const Overview = (props) => {
                 beginAtZero: true,
                 scaleLabel: {
                     display: true,
-                    labelString: 'Students'
+                    labelString: 'Students',
                 },
                 ticks: {
                     userCallback: function(label, index, labels) {
                         if (Math.floor(label) === label) {
                             return label;
                         }
-                    }
+                    },
+                    
+                    max: props.context.students.length
                 }
             }],
             
         },
-        maintainAspectRatio: true
+        maintainAspectRatio: true,
+        
        
     }
     return (

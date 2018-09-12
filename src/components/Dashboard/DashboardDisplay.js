@@ -21,7 +21,7 @@ const DashboardDisplay = (props) => {
                 </div>
 
                 <div>
-                   <h2>{`${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`}</h2>
+                   <h2>{`${props.date} - ${props.time}`}</h2>
                 </div>
             </header>
             <div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import {Bar} from 'react-chartjs-2';
 import AssessmentGraph from './AssessmentGraph';
 const Overview = (props) => {
     
@@ -23,14 +22,10 @@ const Overview = (props) => {
                 </div>
 
                 <div className='type-container'>
-           <span>Type</span> | <select name='assignmentType' onChange={(e)=> props.context.changeHandler(e.target.name, e.target.value)} value={props.context.assignmentType}>
-                    <option defaultValue value='assessments'>Assessments</option>
-                    <option value='competencies'>Competencies</option>
+           <span>Type</span> | <select name='assignmentType' onChange={(e)=> props.context.changeAssignmentHandler(e.target.name, e.target.value)} value={props.context.assignmentType}>
+                    <option defaultValue value='competencies'>Competencies</option>
+                    <option value='assessments'>Assessments</option>
                 </select>
-                </div>
-
-                <div>
-                    <button onClick={() => props.context.studentMethods.getAssignmentsByCohort()}>Search</button>
                 </div>
            </div>
            <AssessmentGraph {...props}/>

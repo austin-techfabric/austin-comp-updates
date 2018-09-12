@@ -10,7 +10,6 @@ class AssessmentStudentViewContainer extends Component {
     }
 
     render() {
-        console.log(this.props.context.student)
         const { student, user } = this.props.context
         return (
             <div className='assessment-student-view-container'>

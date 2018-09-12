@@ -17,8 +17,7 @@ class DashboardContainer extends Component {
 
     render() {
 
-        const { students, cohort } = this.props.context;
-        console.log(cohort)
+        const { students } = this.props.context;
         return (
             <div className='dashboard-container'>
                 {this.props.context.user ? <CompetenciesDisplay students={students} /> : <Redirect to='/' />}

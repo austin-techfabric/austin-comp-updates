@@ -6,7 +6,7 @@ const LoginDisplay = (props) => {
     return (
         <div  className='login-display'>
             <div>
-                <img src={logo} />
+                <img src={logo} alt='devmountain logo'/>
             </div>
             <h1>Login</h1>
             <input onKeyPress={(e) =>  e.key === "Enter" ? props.login(email, password) : null} name='email' type='text' onChange={(e) =>props.changeHandler(e.target.name, e.target.value)} value={email} autoFocus/>

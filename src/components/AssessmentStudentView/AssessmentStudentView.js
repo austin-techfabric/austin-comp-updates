@@ -10,11 +10,11 @@ const AssessmentStudentView = (props) => {
         }
     })
     let percentageComplete = (comPassed/21) * 100;
-    
+    console.log(props)
     const assessList = props.student.map(assess => {
         return <div key={assess.assess_id} style={assess.passed ? {textDecoration: 'line-through', backgroundColor:"#e0d0d0"} : {textDecoration: 'none'}} className='assess-container'>
                     <div>{assess.assessment_name}</div>
-                    <div className='status-image-container'>{props.user ? assess.passed ? <img onClick={() => props.context.studentMethods.markAssessComplete(assess.assess_id, assess.id, !assess.passed)} src={passed}/> : <img onClick={() => props.context.studentMethods.markAssessComplete(assess.assess_id, assess.id, !assess.passed)} src={incomplete}/> : ''}</div>
+                    <div className='status-image-container'>{props.user ? assess.passed ? <img onClick={() => props.context.studentMethods.markAssessComplete(assess.assess_id, assess.id, !assess.passed)} src={passed} alt='a passing checkmark'/> : <img onClick={() => props.context.studentMethods.markAssessComplete(assess.assess_id, assess.id, !assess.passed)} alt='an unchecked checkmark' src={incomplete}/> : ''}</div>
                 </div>
     })
 
@@ -27,7 +27,7 @@ const AssessmentStudentView = (props) => {
                     <h2>{props.student[0].email}</h2>
                 </div>
                 <div className='header-and-back-button-container'>
-                    <h1>{parseInt(percentageComplete)} % Complete </h1>
+                    <h1>{parseInt(percentageComplete, 10)} % Complete </h1>
                     <button onClick={props.history.goBack}>Back</button>
                 </div>
             </div>

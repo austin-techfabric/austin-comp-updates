@@ -36,6 +36,7 @@ id SERIAL PRIMARY KEY NOT NULL
 , comp_id INTEGER NOT NULL REFERENCES competencies(id)
 , student_id INTEGER NOT NULL REFERENCES students(id)
 , passed BOOLEAN NOT NULL
+, notes TEXT
 );
 
 CREATE TABLE assessments(
@@ -48,6 +49,7 @@ id SERIAL PRIMARY KEY NOT NULL
 , assess_id INTEGER NOT NULL REFERENCES assessments(id)
 , student_id INTEGER NOT NULL REFERENCES students(id)
 , passed BOOLEAN NOT NULL
+, notes TEXT
 );
 
 --insert dummy data

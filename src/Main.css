@@ -147,6 +147,7 @@ main {
       width: 100%; }
     .home-container .login-display h1 {
       font-size: 22px;
+      margin-bottom: 10px;
       color: #c5c4c4; }
     .home-container .login-display input, .home-container .login-display button {
       margin: 5px 0;

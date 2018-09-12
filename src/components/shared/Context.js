@@ -12,8 +12,10 @@ class ContextProvider extends Component {
             active: true,
             name:'',
             email:'',
+            staff_position:'Mentor',
+            staff_email:'',
             user:'',
-            assignmentType: 'assessments',
+            assignmentType: 'competencies',
             assignments: [],
             student:[],
             students: [],
@@ -77,9 +79,8 @@ class ContextProvider extends Component {
                     })
                 },
                 getAssignmentsByCohort: () => {
-                    let statToGrab = this.state.assignmentType || 'assessments';
+                    let statToGrab = this.state.assignmentType || 'competencies';
                     axios.get(`/api/get_assessments_by_cohort/${statToGrab}/${this.state.cohort || this.state.user.assignedCohort}`).then(({data: assignments}) => {
-                        console.log(assignments)
                         this.setState({
                             assignments: assignments
                         })
@@ -97,6 +98,10 @@ class ContextProvider extends Component {
                             this.props.history.push('/dashboard')
                         })
                     })
+                },
+                addStaff:() => {
+                    console.log({staff_position:this.state.staff_position,
+                    staff_email:this.state.staff_email})
                 },
                 getUser: () => {
                     axios.get('/api/get_logged_in_user').then(({data: user})=>{
@@ -120,13 +125,39 @@ class ContextProvider extends Component {
                 })
             },
             changeCohortHandler: (key, value)=> {
-                axios.get(`/api/get_students_by_cohort/${value}/?active=${true}`).then(({data: students}) => {
-                    console.log('students :', students);
+                const grabStudents =() =>{
+                   return axios.get(`/api/get_students_by_cohort/${value}/?active=${true}`)
+                }
+
+                const grabAssignments = () =>{
+                   let statToGrab = this.state.assignmentType || 'competencies';
+                   return axios.get(`/api/get_assessments_by_cohort/${statToGrab}/${value}`)
+                }
+
+                axios.all([grabAssignments(), grabStudents()]).then(axios.spread(({data: assignments}, {data:students})=>{
                     this.setState({
+                        assignments: assignments,
                         [key]:value,
                         students: students
                     })
-                })
+                }))
+            },
+            changeAssignmentHandler: (key, value)=> {
+                const grabStudents =() =>{
+                   return axios.get(`/api/get_students_by_cohort/${this.state.cohort || this.state.user.assignedCohort}/?active=${true}`)
+                }
+
+                const grabAssignments = () =>{
+                   return axios.get(`/api/get_assessments_by_cohort/${value}/${this.state.cohort || this.state.user.assignedCohort}`)
+                }
+
+                axios.all([grabAssignments(), grabStudents()]).then(axios.spread(({data: assignments}, {data:students})=>{
+                    this.setState({
+                        assignments: assignments,
+                        [key]:value,
+                        students: students
+                    })
+                }))
             }
         }
     }

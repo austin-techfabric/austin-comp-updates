@@ -4,8 +4,7 @@ import passed from '../../styles/media/pass.svg';
 
 const StudentDisplay = (props) => {
     let comPassed = 0;
-    props.student.map(comp => {
-        console.log('comp.passed :', comPassed);
+    props.student.forEach(comp => {
         if(comp.passed){
             comPassed += 1;
         }
@@ -13,11 +12,12 @@ const StudentDisplay = (props) => {
     let percentageComplete = (comPassed/33) * 100;
     
     const compList = props.student.map(comp => {
+        
         return <div key={comp.comp_id} style={comp.passed ? {textDecoration: 'line-through', backgroundColor:"#e0d0d0"} : {textDecoration: 'none'}} className='comp-container'>
                     <div>{comp.category}</div>
                     <div>{comp.competency_name}</div>
                     <div>{comp.description}</div>
-                    <div className='status-image-container'>{props.user ? comp.passed ? <img onClick={() => props.context.studentMethods.markCompComplete(comp.comp_id, comp.id, !comp.passed)} src={passed}/> : <img onClick={() => props.context.studentMethods.markCompComplete(comp.comp_id, comp.id, !comp.passed)} src={incomplete}/> : ''}</div>
+                    <div className='status-image-container'>{props.user ? comp.passed ? <img onClick={() => props.context.studentMethods.markCompComplete(comp.comp_id, comp.id, !comp.passed)} alt='a passing checkmark' src={passed}/> : <img onClick={() => props.context.studentMethods.markCompComplete(comp.comp_id, comp.id, !comp.passed)} src={incomplete} alt='an unchecked checkmark'/> : ''}</div>
                 </div>
     })
 
@@ -31,7 +31,7 @@ const StudentDisplay = (props) => {
                     <h2>{props.student[0].email}</h2>
                 </div>
                 <div className='header-and-back-button-container'>
-                    <h1>{parseInt(percentageComplete)} % Complete </h1>
+                    <h1>{parseInt(percentageComplete, 10)} % Complete </h1>
                     <button onClick={props.history.goBack}>Back</button>
                 </div>
             </div>

@@ -16,7 +16,7 @@ const StudentAssessmentCard = (props) => {
         },
         successBar:{
             maxWidth:'150px',
-            flex: props.assessments_passed,
+            flex: props.assessments_passed || null,
             height:'20px',
             background: '#30cc30',
             boxShadow:'1px 3px 4px rgba(0,0,0,0.6)',
@@ -26,7 +26,7 @@ const StudentAssessmentCard = (props) => {
         },
         leftBar:{
             maxWidth:'150px',
-            flex:21 - props.assessments_passed,
+            flex:21 - props.assessments_passed || null,
             height:'20px',
             background: '#f33a30',
             transition: '.3s'
