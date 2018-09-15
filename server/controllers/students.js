@@ -13,10 +13,26 @@ module.exports = {
             cohort,
             email
         }
+
         db.create_student(newStudent).then(addedStudentId => {
-            db.build_comp_list([addedStudentId[0].id, cohort]).then(studentsArray => {
-                res.status(200).send(studentsArray);
-        })
+            db.get_assess_titles().then(assessment_titles => {
+                assessment_titles.map((title, index) => {
+                    db.query('INSERT INTO assessments_status (assess_id, student_id, passed) VALUES ($1, $2, FALSE)', [index + 1, addedStudentId[0].id])
+                })
+            })
+                db.get_comp_titles().then(comp_titles => {
+                    comp_titles.map((title, index) => {
+                        db.query('INSERT INTO status (comp_id, student_id, passed) VALUES ($1, $2, FALSE)', [index + 1, addedStudentId[0].id, cohort])
+                    })
+                }).catch(err => console.log(err))
+
+                db.grab_all_students_after_creation(cohort).then(studentsArray => {
+                    console.log(studentsArray);
+                    res.status(200).send(studentsArray);
+                }).catch(err => console.log(err))
+       
+
+            
             
         }).catch(err => {
             res.status(404).send(`SQL error ${err.detail} error code: ${err.code}`)

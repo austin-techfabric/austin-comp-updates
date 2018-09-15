@@ -36,7 +36,12 @@ app.route('/api/students')
 .get(students.readStudents)
 .post(students.createStudent);
 
+app.route('/api/invited_staff')
+.get(userCont.getAllInvitedUsers)
+.post(userCont.inviteUser);
+
 app.get('/api/get_logged_in_user', userCont.readLoggedInUser);
+app.get('/api/get_users_list', userCont.getAllUsers);
 
 app.get('/api/get_students_by_cohort/:cohort', students.readStudentsByCohort);
 app.get('/api/get_student_status/:id', students.readStudentIdAndStatus);

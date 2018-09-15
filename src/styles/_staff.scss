@@ -7,7 +7,72 @@
             color: rgb(109, 109, 109);
             text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.711);
         }
+    }
 
-        
+    .add-staff-container {
+        padding: 20px 0;
+
+        h2 {
+            font-size: 24px;
+            color: rgb(109, 109, 109);
+            text-shadow: .2px .2px 0px rgba(0, 0, 0, 0.493);
+        }
+
+
+        > div {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+
+            >div:first-child {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .staff-class-list-card-container {
+                display: flex;
+                background:rgb(216, 216, 216);
+                width: 100%;
+                justify-content: space-between;
+                margin: 15px 0;
+                padding: 15px;
+                box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.418);
+            }
+
+            input {
+                margin: 0 10px;
+                height: 30px;
+                font-size: 16px;
+                width: 250px;
+                margin: 0 10px;
+            }
+    
+            button {
+                color: white;
+                margin: 0 0 3px 0;
+                border: none;
+                height: 25px;
+                font-size: 16px;
+                width: 150px;
+                border-radius: 2px;
+                background-color: rgb(80, 169, 220);
+                box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.404);
+                cursor: pointer;
+            }
+
+            select {
+                margin-left: 10px;
+                font-size: 20px;
+                padding-left: 10px;
+                height: 30px;
+                color: rgb(54, 54, 54);
+                border:solid 1px rgba(54, 54, 54, 0.5);
+                border-radius: 2px;
+                margin: 0 10px;
+            }
+        }
     }
 }

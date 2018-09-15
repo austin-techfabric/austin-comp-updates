@@ -1,6 +1,9 @@
 -- Drop Tables
 DROP TABLE IF EXISTS status;
+DROP TABLE IF EXISTS assessments_status;
+DROP TABLE IF EXISTS assessments;
 DROP TABLE IF EXISTS competencies;
+DROP TABLE IF EXISTS invited_staff_list;
 DROP TABLE IF EXISTS students;
 DROP TABLE IF EXISTS users;
 
@@ -15,6 +18,12 @@ id SERIAL PRIMARY KEY NOT NULL
 , assigned_cohort TEXT
 );
 
+CREATE TABLE invited_staff_list (
+    id SERIAL PRIMARY KEY NOT NULL
+    ,position TEXT
+    ,email TEXT
+    ,registered BOOLEAN NOT NULL
+);
 
 CREATE TABLE students(
 id SERIAL PRIMARY KEY NOT NULL
@@ -113,7 +122,7 @@ VALUES ('Arrays-1')
 ,('Constructors - classes')
 ,('Constructors - functions')
 ,('Prototypes')
-,('Built-In Prototypes')
+,('Built-In Prototypes');
 
 
 
@@ -121,4 +130,4 @@ SELECT * FROM students;
 SELECT * FROM users;
 SELECT * FROM competencies;
 SELECT * FROM status;
-
+SELECT * FROM assessments_status;

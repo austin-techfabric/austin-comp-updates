@@ -1,0 +1,1 @@
+SELECT * FROM invited_staff_list; 

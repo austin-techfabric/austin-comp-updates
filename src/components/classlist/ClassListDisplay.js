@@ -9,7 +9,7 @@ const ClassListDisplay = (props) => {
     })
     return (
         <div>
-            <header>ClassList | <select name='cohort' onChange={(e)=> props.changeCohortHandler(e.target.name, e.target.value)} value={props.cohort}>
+            <header><h1>Students</h1><h1> | </h1><select name='cohort' onChange={(e)=> props.changeCohortHandler(e.target.name, e.target.value)} value={props.cohort}>
                     <option defaultValue value={props.user.assignedCohort}>Assigned {props.user.assignedCohort}</option>
                     <option value='wpx1'>wpx1</option>
                     <option value='wpx2'>wpx2</option>

@@ -10,13 +10,21 @@
         padding: 30px 50px;
         font-size: 22px;
         border-bottom: 1px grey solid;
+
+        h1 {
+            font-size: 36px;
+            margin:0 10px;
+            color: rgb(109, 109, 109);
+            text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.711);
+        }
+
         select {
             margin-left: 10px;
             font-size: 20px;
             padding-left: 10px;
             height: 30px;
             color: rgb(54, 54, 54);
-            border: solid 2px rgb(80, 169, 220);
+            border: solid 2px rgba(80, 169, 220, 0.993);
             border-radius: 2px;
         }
     }
@@ -28,6 +36,8 @@
         align-items: center;
         margin: 10px 0;
         font-size: 16px;
+
+        
 
         input {
             margin: 0 10px;

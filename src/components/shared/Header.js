@@ -40,7 +40,7 @@ class Header extends PureComponent {
                             <ul>
                                 <li><Link to='/dashboard'>Dashboard</Link></li>
                                 <li><Link to='/staff'>Staff</Link></li>
-                                <li><Link to='/class_list'>Class&nbsp;List</Link></li>
+                                <li><Link to='/class_list'>Students</Link></li>
                                 <li className='sub-menu'>
                                     <span>Assignments</span>
                                     <ul className='sub-header-menu'>

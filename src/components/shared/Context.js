@@ -14,6 +14,8 @@ class ContextProvider extends Component {
             email:'',
             staff_position:'Mentor',
             staff_email:'',
+            staffList: [],
+            invitedStaffList: [],
             user:'',
             assignmentType: 'competencies',
             assignments: [],
@@ -99,15 +101,38 @@ class ContextProvider extends Component {
                         })
                     })
                 },
-                addStaff:() => {
-                    console.log({staff_position:this.state.staff_position,
-                    staff_email:this.state.staff_email})
+                inviteStaff:() => {
+                    const newStaff = {
+                        position: this.state.staff_position,
+                        email:this.state.staff_email
+                    }
+
+                    axios.post('/api/invited_staff', newStaff).then(({data: invitedStaffList}) => {
+                        this.setState({
+                            staff_position: '',
+                            staff_email: '',
+                            invitedStaffList: invitedStaffList
+                        })
+                    }).catch(err => console.log(err))
+                },
+                getInvitedStaff: () => {
+                    axios.get('/api/invited_staff').then(({data: invitedStaffList}) => {
+                        this.setState({
+                            invitedStaffList: invitedStaffList
+                        })
+                    }).catch(err => console.log(err))
                 },
                 getUser: () => {
                     axios.get('/api/get_logged_in_user').then(({data: user})=>{
-                        console.log('resetting session')
                         this.setState({
                             user: user
+                        })
+                    })
+                },
+                getAllStaff: () => {
+                    axios.get('/api/get_users_list').then(({data: staffList}) => {
+                        this.setState({
+                            staffList: staffList
                         })
                     })
                 },
