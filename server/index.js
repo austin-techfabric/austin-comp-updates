@@ -29,7 +29,7 @@ app.use(session({
 app.get('/api/cool', (req, res)=> res.send('worked!'));
 
 app.post('/api/register', login.register);
-app.post('/api/login', login.login);
+app.get('/callback', login.auth0_login);
 app.post('/api/logout', login.logout);
 
 app.route('/api/students')

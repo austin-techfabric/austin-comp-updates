@@ -42,14 +42,12 @@ module.exports = {
         const db = req.app.get('db');
         const {passed} = req.query;
         const {id} = req.params;
-        console.log(id, passed);
         db.get_all_passed([id, passed]).then(passedStudentsArray => {
             console.log(passedStudentsArray);
             res.status(200).send(passedStudentsArray)
         })
     },
     readStudentsByCohort: (req, res)=> {
-        console.log('hit')
         const db = req.app.get('db');
         const {active} = req.query;
         const {cohort} = req.params;
@@ -65,7 +63,6 @@ module.exports = {
     readStudentById: (req, res) => {
        const db = req.app.get('db');
        const {id} = req.params;
-       console.log(id)
        db.get_student_by_id(id).then(student => {
            console.log(student)
            res.status(200).send(student);
@@ -84,10 +81,8 @@ module.exports = {
         const db = req.app.get('db');
         const {active} = req.query;
         const {cohort} = req.params;
-        console.log('', cohort)
         db.get_passed_assessments([cohort, false]).then(cohortStudentsArray => {
 
-            console.log('cohortStudentsArray', cohortStudentsArray)
             res.status(200).send(cohortStudentsArray)
         }).catch(err => {
             console.log(err)
@@ -112,7 +107,6 @@ module.exports = {
     getFullCohortStats: (req, res) => {
         const db = req.app.get('db');
         const {assignment, cohort} = req.params;
-        console.log(cohort, assignment)
         if(assignment === 'assessments'){
             db.get_assess_titles().then(assessTitles => {
                 let assessArray = assessTitles.map((title) => {
@@ -129,7 +123,6 @@ module.exports = {
                             }
                         })
 
-                        console.log(assessResponse);
                     res.status(200).send(assessResponse)
                 })
             })
@@ -139,9 +132,7 @@ module.exports = {
                 let compArray = compTitles.map((title) => {
                         return {title: title.competency_name, count: 0}
                     });
-                console.log('test comptitles',compArray);
                 db.full_class_stats_comps([true, cohort]).then(competencies => {
-                    console.log(competencies);
                     let compResponse = compArray.map((title) => {
                             let index = competencies.findIndex(actual => actual.competency_name == title.title)
                             if(index !== -1){
@@ -151,7 +142,6 @@ module.exports = {
                             }
                         })
 
-                        console.log(compResponse);
                     res.status(200).send(compResponse)
                 })
             })

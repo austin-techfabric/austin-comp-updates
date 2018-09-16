@@ -31,6 +31,9 @@
   "proxy": {
     "/api/": {
       "target": "http://localhost:4000"
+    },
+    "/callback": {
+      "target": "http://localhost:4000"
     }
   },
   "nodemonConfig": {
