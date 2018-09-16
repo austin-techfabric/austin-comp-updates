@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import LoginDisplay from './LoginDisplay';
+import {Redirect} from 'react-router-dom';
 import { context } from '../shared/Context';
 
 class HomeContainer extends Component {
-    state = {
-            email: '',
-            password: ''
-    }
+    
     
     changeHandler = (key, value) => {
         this.setState({
@@ -22,9 +20,7 @@ class HomeContainer extends Component {
     render() {
         return (
             <div  className='home-container'>
-                {/* this.props.context.userMethods.login */}
-                <LoginDisplay login={this.login} changeHandler={this.changeHandler} {...this.state} />
-                
+                { this.props.context.user ? <Redirect to='/dashboard' /> : <LoginDisplay login={this.login} /> } 
             </div>
         );
     }

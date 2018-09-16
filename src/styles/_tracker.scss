@@ -1,0 +1,64 @@
+.tracker-container {
+    header {
+        padding-bottom: 10px;
+        border-bottom: 1px solid grey;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+
+        >div {
+            display: flex;
+            align-items: center;
+            h1 {
+                margin-bottom: 5px;
+            }
+        }
+
+        
+
+        
+        button {
+            height: 30px;
+            background: $button-color;
+            width: 150px;
+            overflow: hidden;
+            margin: 10px 0;
+            font-size: 16px;
+            color: white;
+            cursor: pointer;
+            position: relative;
+            
+
+            svg {
+                position: absolute;
+                top: -5px;
+                left: 20px;
+
+                circle {
+                   stroke: white 4px;
+                }
+
+                
+            }
+        }
+        
+        
+        h1 {
+            margin:0 0px 0 0;
+            font-size: 36px;
+            color: rgb(109, 109, 109);
+            text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.711);
+        }
+
+        select {
+            margin-left: 10px;
+            font-size: 20px;
+            padding-left: 10px;
+            height: 36px;
+            color: rgb(54, 54, 54);
+            border: solid 2px rgba(80, 169, 220, 0.993);
+            border-radius: 2px;
+        }
+    }
+}

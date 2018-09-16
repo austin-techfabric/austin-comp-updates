@@ -9,6 +9,7 @@ import DashboardContainer from './components/Dashboard/DashboardContainer';
 import AssessmentContainer from './components/Assessments/AssessmentContainer';
 import AssessmentStudentViewContainer from './components/AssessmentStudentView/AssessmentStudentViewContainer';
 import StaffContainer from './components/staff/StaffContainer';
+import TrackerContainer from './components/trackers/TrackerContainer';
 import './Main.css';
 
 class App extends Component {
@@ -26,6 +27,7 @@ class App extends Component {
             <Route path='/assessments/student/:id' component={AssessmentStudentViewContainer}/>
             <Route path='/competencies' component={CompetenciesContainer} />
             <Route path='/student/:id' component={StudentContainer}/>
+            <Route path='/trackers' component={TrackerContainer} />
             <Route path='*' render={() => {
               return <div style={{textAlign:"center"}}>
                Nothing to see here!

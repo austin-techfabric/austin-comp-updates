@@ -7,7 +7,7 @@
 
     .login-display {
         width: 330px;
-        height: 300px;
+        height: 200px;
         background: #3c3c3c;
         display: flex;
         flex-direction: column;
@@ -54,17 +54,40 @@
             color: white;
             border: none;
             height: 40px;
+            overflow: hidden;
             width: 100px;
             border-radius: 2px;
             background-color: rgb(80, 169, 220);
             box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.404);
             cursor: pointer;
+            position: relative;
+            
+        }
+        button:after {
+            content: '';
+            position: absolute;
+            background:  linear-gradient(90deg, rgba(255,255,255,0.1),rgba(255,255,255,.2),rgba(255,255,255,0.1));
+            height: 180px;
+            width: 100px;
+            top: -70px;
+            left: 0px;
+            opacity: .5;
+            transition: .45s;
+            display: inline-block;
+            transition-timing-function: ease-out;
+            transform: scaleX(0);
+            
+            box-shadow: 0px 0px 5px white;
+        }
+
+        button:hover:after {
+            transform: scaleX(1);
         }
     }
 
-    .login-display:hover {
-        box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.411);
-    }
+    // .login-display:hover {
+    //     box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.411);
+    // }
 
 }
 

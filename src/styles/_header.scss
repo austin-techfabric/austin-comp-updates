@@ -40,7 +40,7 @@
         align-items:  center;
         height: 100%;
 
-            .sub-menu:hover .sub-header-menu {
+            .sub-menu:hover .sub-header-menu,  .sub-menu:hover .sub-header-menu-skinny{
                 height: 150px;
                 border-bottom-right-radius: 3px;
                 border-bottom-left-radius: 3px;
@@ -77,6 +77,26 @@
                     background:#444444;
                     top: 75px;
                     left: -20px;
+                    transition: .3s;
+                    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.404);
+
+                    >div {
+                        height: 150px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-evenly;
+                    }
+                }
+
+                .sub-header-menu-skinny {
+                    
+                    position: absolute;
+                    height: 0;
+                    overflow: hidden;
+                    width: 145px;
+                    background:#444444;
+                    top: 75px;
+                    left: -46px;
                     transition: .3s;
                     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.404);
 

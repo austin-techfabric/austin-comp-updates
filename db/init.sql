@@ -11,10 +11,10 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users(
 id SERIAL PRIMARY KEY NOT NULL
-, name TEXT NOT NULL
-, password TEXT NOT NULL
+, sub TEXT
+, name TEXT
 , position TEXT NOT NULL
-, email TEXT UNIQUE
+, email TEXT UNIQUE NOT NULL
 , assigned_cohort TEXT
 );
 
@@ -22,6 +22,7 @@ CREATE TABLE invited_staff_list (
     id SERIAL PRIMARY KEY NOT NULL
     ,position TEXT
     ,email TEXT
+    ,assigned_cohort TEXT
     ,registered BOOLEAN NOT NULL
 );
 
@@ -38,6 +39,7 @@ id SERIAL PRIMARY KEY NOT NULL
 , category TEXT NOT NULL
 , competency_name TEXT NOT NULL
 , description TEXT NOT NULL
+, active BOOLEAN
 );
 
 CREATE TABLE status(
@@ -51,6 +53,7 @@ id SERIAL PRIMARY KEY NOT NULL
 CREATE TABLE assessments(
 id SERIAL PRIMARY KEY NOT NULL
 , assessment_name TEXT NOT NULL
+, active BOOLEAN
 );
 
 CREATE TABLE assessments_status(
@@ -62,8 +65,7 @@ id SERIAL PRIMARY KEY NOT NULL
 );
 
 --insert dummy data
-INSERT INTO users (name, password, position, email, assigned_cohort) VALUES ('josh borup', '$2b$12$u4A7tB2U837TTZKXTg37c.UiPcAyi3dw3TOzaC4cJsEeO0uXyV75K', 'Lead Mentor', 'joshborup@devmounta.in', 'wpx6');
-
+INSERT INTO invited_staff_list (position, email, assigned_cohort, registered) VALUES ('Lead Mentor', 'joshborup@gmail.com', 'wpx7', false);
 
 --insert tracked comps
 INSERT INTO competencies (category, competency_name, description) VALUES ('Tooling','Git', 'setting up .gitignore, package.json etc...');
@@ -124,7 +126,11 @@ VALUES ('Arrays-1')
 ,('Prototypes')
 ,('Built-In Prototypes');
 
+UPDATE competencies
+SET active = true;
 
+UPDATE assessments
+SET active = true;
 
 SELECT * FROM students;
 SELECT * FROM users;

@@ -150,16 +150,3 @@ module.exports = {
 }
 
 
-// const titles = ["Arrays-1", "Arrays-2", "Arrays-3",  "Async + Promises", "Built-In Prototypes", "Callbacks 1", "Callbacks 2", "Closures", "Constructors - classes", "Constructors - functions", "Context 1", "Context 2", "Data Types", "ES6", "For Loops", "Functions 1", "Functions 2", "Scope", "JSON", "Objects", "Prototypes"];
-// const fixedArray = titles.map((title) => {
-//     return {title: title, count: 0}
-// });
-
-// const count = fixedArray.map((title) => {
-//     let index = props.context.assignments.findIndex(actual => actual.assessment_name === title.title)
-//     if(index !== -1){
-//         return props.context.assignments[index].count
-//     }else{
-//         return title.count
-//     }
-// })
