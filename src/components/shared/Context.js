@@ -8,15 +8,16 @@ class ContextProvider extends Component {
     constructor(props){
         super(props)
         this.state = {
-            cohort: '',
             active: true,
             name:'',
             email:'',
+            editableAssignments: [],
             staff_position:'Mentor',
             staff_email:'',
             staffList: [],
             invitedStaffList: [],
             user:'',
+            cohort: '',
             assignmentType: 'competencies',
             assignments: [],
             student:[],
@@ -30,7 +31,9 @@ class ContextProvider extends Component {
                     })
                 },
                 getStudentsByCohort: (active) => {
+
                     axios.get(`/api/get_students_by_cohort/${this.state.cohort || this.state.user.assignedCohort}/?active=${active}`).then(response => {
+                        console.log(response)
                         this.setState({
                             students: response.data
                         })
@@ -80,9 +83,19 @@ class ContextProvider extends Component {
                         })
                     })
                 },
+
+                getAssessmentCountByCohort: () => {
+                    axios.get(`/api/get_assessments_by_cohort/${this.state.cohort || this.state.user.assignedCohort}`).then(({data: student}) => {
+                        console.log(student)
+                        this.setState({
+                            student: student
+                        })
+                    })
+                },
                 getAssignmentsByCohort: () => {
                     let statToGrab = this.state.assignmentType || 'competencies';
                     axios.get(`/api/get_assessments_by_cohort/${statToGrab}/${this.state.cohort || this.state.user.assignedCohort}`).then(({data: assignments}) => {
+                        
                         this.setState({
                             assignments: assignments
                         })
@@ -96,11 +109,34 @@ class ContextProvider extends Component {
                         this.setState({
                             user: user
                         }, () => {
-                            this.state.studentMethods.getAssignmentsByCohort()
-                            this.props.history.push('/dashboard')
+                            console.log
+                            this.state.studentMethods.getAssignmentsByCohort();
+                            this.props.history.push('/dashboard');
                         })
                     })
                 },
+                getEditableAssignments: () => {
+                    const grabAssignments = () =>{
+                        return axios.get(`/api/get_assessment/${this.state.assignmentType}`)
+                     }
+
+                     grabAssignments().then(editableAssignments => {
+                         this.setState({
+                            assignments: editableAssignments
+                         })
+                     })
+
+                },
+                updateEditableAssignments: (id, active) => {
+                    
+                    axios.put(`/api/get_assignment/${this.state.assignmentType}`, {id, active}).then(({data: editableAssignments}) => {
+                        console.log(editableAssignments)
+                        this.setState({
+                           assignments: editableAssignments
+                        })
+                    })
+                } 
+                ,
                 inviteStaff:() => {
                     const newStaff = {
                         position: this.state.staff_position,
@@ -149,6 +185,15 @@ class ContextProvider extends Component {
                     [key]:value
                 })
             },
+            changeAssignmentEditableHandler: (key, value)=> {
+                    
+                axios.get(`/api/get_assignment/${value}`).then(({data: assignments}) => {
+                    this.setState({
+                        [key]:value,
+                        assignments: assignments
+                    })
+                })
+            },
             changeCohortHandler: (key, value)=> {
                 const grabStudents =() =>{
                    return axios.get(`/api/get_students_by_cohort/${value}/?active=${true}`)
@@ -189,8 +234,14 @@ class ContextProvider extends Component {
 
     componentDidMount(){
         this.state.studentMethods.getAssignmentsByCohort()
+        this.state.changeCohortHandler('cohort', this.state.user.assignedCohort);
         if(!this.state.user){
             this.state.userMethods.getUser();
+        }
+        if(this.state.user){
+            this.setState({
+                cohort: this.state.user.assignedCohort,
+            })
         }
     }
  

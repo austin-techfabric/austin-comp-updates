@@ -9,7 +9,7 @@ const StudentDisplay = (props) => {
             comPassed += 1;
         }
     })
-    let percentageComplete = (comPassed/34) * 100;
+    let percentageComplete = (comPassed/props.student.length) * 100;
     
     const compList = props.student.map(comp => {
         

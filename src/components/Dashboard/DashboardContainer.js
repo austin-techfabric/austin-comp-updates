@@ -11,11 +11,17 @@ class DashboardContainer extends Component {
             date: new Date().toLocaleDateString()
         }
 
-        this.props.context.studentMethods.getStudentsByCohort();
-        this.props.context.studentMethods.getAssignmentsByCohort()
+        this.props.context.studentMethods.getAssignmentsByCohort();
     }
 
     componentDidMount() {
+
+        //refactor this so you dont have to use set timeout to make block async
+        setTimeout(() => {
+            this.props.context.studentMethods.getStudentsByCohort(true);
+            this.props.context.studentMethods.getAssignmentsByCohort();
+        }, 0)
+        
         this.liveClock = setInterval(() => this.tick(), 1000);
     }
 
@@ -32,6 +38,7 @@ class DashboardContainer extends Component {
     }
 
     render() {
+        console.log(this.props.context.students)
         return (
             <div className='dashboard-container'>
                 {this.props.context.user ? <DashboardDisplay {...this.state} {...this.props}/> : <Redirect to='/' />}

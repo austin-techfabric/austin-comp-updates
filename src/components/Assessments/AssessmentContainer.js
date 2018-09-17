@@ -6,6 +6,7 @@ import { context } from '../shared/Context';
 class AssessmentContainer extends Component {
     componentDidMount(){
         this.props.context.studentMethods.getStudentsAssessments(this.props.context.cohort, true)
+        this.props.context.studentMethods.getAssessmentCountByCohort();
     }
     render() {
         const { students } = this.props.context;

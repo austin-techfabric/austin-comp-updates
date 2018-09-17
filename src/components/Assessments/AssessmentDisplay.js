@@ -15,7 +15,7 @@ const AssessmentDisplay = (props) => {
                 </header>
                 {
                 props.students.map((student) => {
-                    return <StudentAssessmentCard key={student.id} {...student} />
+                    return <StudentAssessmentCard key={student.id} {...props} {...student} />
                 })
             }
             </div>

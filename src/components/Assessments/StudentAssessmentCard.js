@@ -26,7 +26,7 @@ const StudentAssessmentCard = (props) => {
         },
         leftBar:{
             maxWidth:'150px',
-            flex:21 - props.assessments_passed || null,
+            flex:props.context.student.length - props.assessments_passed || null,
             height:'20px',
             background: '#f33a30',
             transition: '.3s'
@@ -34,7 +34,7 @@ const StudentAssessmentCard = (props) => {
     }
 
 
-
+    console.log('dlkajfhsjkhfjkadshfkjhkfdshfaldskj', props.context.student.length)
     return (
         <Link to={`/assessments/student/${props.id}`}>
         <div className='student-card-container'>
@@ -45,9 +45,9 @@ const StudentAssessmentCard = (props) => {
                     <div style={style.successBar}></div>
                     <div style={style.leftBar}></div>
                 </div>
-                <span className='assessments-left'>{parseInt(((props.assessments_passed / 21 * 100)), 10)}%</span>
+                <span className='assessments-left'>{parseInt(((props.assessments_passed / props.context.student.length * 100)), 10)}%</span>
                 <span className='bar-divider'>|</span>
-                <span className='assessments-left-number'>{props.assessments_passed} / 21</span>
+                <span className='assessments-left-number'>{props.assessments_passed} / {props.context.student.length}</span>
             </div>
         </div>
         </Link>

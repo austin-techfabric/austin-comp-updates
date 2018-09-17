@@ -40,6 +40,14 @@ app.route('/api/invited_staff')
 .get(userCont.getAllInvitedUsers)
 .post(userCont.inviteUser);
 
+
+app.route('/api/get_assignment/:assignmentType')
+.get(userCont.getEditableAssignments)
+.put(userCont.updateEditableAssignments)
+
+
+app.get('/api/get_assessments_by_cohort/:cohort', students.getAssessmentsByCohort)
+
 app.get('/api/get_logged_in_user', userCont.readLoggedInUser);
 app.get('/api/get_users_list', userCont.getAllUsers);
 

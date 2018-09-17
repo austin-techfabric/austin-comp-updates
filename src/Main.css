@@ -554,7 +554,10 @@ main {
     font-size: 16px;
     color: white;
     cursor: pointer;
-    position: relative; }
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
     .tracker-container header button svg {
       position: absolute;
       top: -5px;
@@ -574,3 +577,35 @@ main {
     color: #363636;
     border: solid 2px rgba(80, 169, 220, 0.993);
     border-radius: 2px; }
+
+.tracker-container .editable-assignment-container > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+
+.tracker-container h2 {
+  font-size: 24px;
+  margin: 10px 0; }
+
+.tracker-container .assignment-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  font-size: 20px;
+  background: #dbdada;
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.418);
+  margin: 10px 0; }
+  .tracker-container .assignment-container .assignment {
+    font-size: 22px;
+    font-weight: 900;
+    cursor: pointer; }
+  .tracker-container .assignment-container .assignment.active {
+    color: green;
+    text-shadow: 0 0 5px green; }
+  .tracker-container .assignment-container .assignment.inactive {
+    color: grey; }
+  .tracker-container .assignment-container > div:not(:last-child) {
+    flex: 1; }

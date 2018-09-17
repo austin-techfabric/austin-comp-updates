@@ -1,1 +1,2 @@
-SELECT assessment_name FROM assessments;
+SELECT id, assessment_name FROM assessments
+WHERE active = true;

@@ -9,8 +9,8 @@ const AssessmentStudentView = (props) => {
             comPassed += 1;
         }
     })
-    let percentageComplete = (comPassed/21) * 100;
-    console.log(props)
+    let percentageComplete = (comPassed/props.student.length) * 100;
+    console.log('loooooooook',props.student)
     const assessList = props.student.map(assess => {
         return <div key={assess.assess_id} style={assess.passed ? {textDecoration: 'line-through', backgroundColor:"#e0d0d0"} : {textDecoration: 'none'}} className='assess-container'>
                     <div>{assess.assessment_name}</div>

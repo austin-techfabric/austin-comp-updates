@@ -1,1 +1,2 @@
-SELECT competency_name FROM competencies;
+SELECT id, competency_name FROM competencies
+WHERE active = true;

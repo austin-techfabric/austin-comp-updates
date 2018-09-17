@@ -13,9 +13,7 @@ class Header extends PureComponent {
         }
     }
 
-    componentDidMount(){
-        
-    }
+    
 
     toggleMobileLinks = () => {
         this.setState((prevProps)=> {

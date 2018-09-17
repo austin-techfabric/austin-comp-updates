@@ -17,12 +17,12 @@ module.exports = {
         db.create_student(newStudent).then(addedStudentId => {
             db.get_assess_titles().then(assessment_titles => {
                 assessment_titles.map((title, index) => {
-                    db.query('INSERT INTO assessments_status (assess_id, student_id, passed) VALUES ($1, $2, FALSE)', [index + 1, addedStudentId[0].id])
+                    db.query('INSERT INTO assessments_status (assess_id, student_id, passed) VALUES ($1, $2, FALSE)', [title.id, addedStudentId[0].id])
                 })
             })
                 db.get_comp_titles().then(comp_titles => {
                     comp_titles.map((title, index) => {
-                        db.query('INSERT INTO status (comp_id, student_id, passed) VALUES ($1, $2, FALSE)', [index + 1, addedStudentId[0].id, cohort])
+                        db.query('INSERT INTO status (comp_id, student_id, passed) VALUES ($1, $2, FALSE)', [title.id, addedStudentId[0].id])
                     })
                 }).catch(err => console.log(err))
 
@@ -146,6 +146,13 @@ module.exports = {
                 })
             })
         }
+    },
+    getAssessmentsByCohort: (req, res) => {
+        const db = req.app.get('db');
+        const { cohort } = req.params;
+        db.get_assessments_by_cohort(cohort).then((assessments)=> {
+            res.status(200).send(assessments)
+        })
     }
 }
 
