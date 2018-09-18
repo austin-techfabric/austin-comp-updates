@@ -1,6 +1,14 @@
 import React from 'react';
 import {Bar} from 'react-chartjs-2';
 const Overview = (props) => {
+
+
+    // const assessList = props.student.map(assess => {
+    //     return assess.assessment_name || assess.competency_name
+    // })
+
+    
+
     const titles = props.context.assignments.map(items => {
         return items.name
     })
@@ -8,7 +16,6 @@ const Overview = (props) => {
         return items.count
     })
 
-    console.log()
 
     const data = {
         labels:titles,

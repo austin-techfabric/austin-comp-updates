@@ -13,6 +13,7 @@ class DashboardContainer extends Component {
     componentDidMount(){
 
         this.props.context.studentMethods.getStudentsByCohort(this.props.context.cohort, true)
+        this.props.context.studentMethods.getCompetenciesCountByCohort();
     }
 
     render() {
@@ -20,7 +21,7 @@ class DashboardContainer extends Component {
         const { students } = this.props.context;
         return (
             <div className='dashboard-container'>
-                {this.props.context.user ? <CompetenciesDisplay students={students} /> : <Redirect to='/' />}
+                {this.props.context.user ? <CompetenciesDisplay {...this.props} students={students} /> : <Redirect to='/' />}
             </div>
         );
     }

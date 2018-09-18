@@ -47,6 +47,7 @@ app.route('/api/get_assignment/:assignmentType')
 
 
 app.get('/api/get_assessments_by_cohort/:cohort', students.getAssessmentsByCohort)
+app.get('/api/get_competencies_by_cohort:cohort', students.getCompetenciesByCohort)
 
 app.get('/api/get_logged_in_user', userCont.readLoggedInUser);
 app.get('/api/get_users_list', userCont.getAllUsers);

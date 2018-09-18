@@ -14,7 +14,7 @@ const DashboardDisplay = (props) => {
                 </header>
             {
                 props.students.map((student) => {
-                    return <StudentCard key={student.id} {...student} />
+                    return <StudentCard key={student.id} {...props} {...student} />
                 })
             }
             </div>

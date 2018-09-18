@@ -92,6 +92,14 @@ class ContextProvider extends Component {
                         })
                     })
                 },
+                getCompetenciesCountByCohort: () => {
+                    axios.get(`/api/get_competencies_by_cohort/${this.state.cohort || this.state.user.assignedCohort}`).then(({data: student}) => {
+                        console.log(student)
+                        this.setState({
+                            student: student
+                        })
+                    })
+                },
                 getAssignmentsByCohort: () => {
                     let statToGrab = this.state.assignmentType || 'competencies';
                     axios.get(`/api/get_assessments_by_cohort/${statToGrab}/${this.state.cohort || this.state.user.assignedCohort}`).then(({data: assignments}) => {

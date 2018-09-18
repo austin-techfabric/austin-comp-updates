@@ -153,6 +153,13 @@ module.exports = {
         db.get_assessments_by_cohort(cohort).then((assessments)=> {
             res.status(200).send(assessments)
         })
+    },
+    getCompetenciesByCohort: (req, res) => {
+        const db = req.app.get('db');
+        const { cohort } = req.params;
+        db.get_competencies_by_cohort(cohort).then((assessments)=> {
+            res.status(200).send(assessments)
+        })
     }
 }
 

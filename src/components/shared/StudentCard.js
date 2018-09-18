@@ -7,10 +7,10 @@ const StudentCard = (props) => {
     const data = {
         labels: [
             `Passed ${props.competencies_passed}`,
-            `Remaining ${34 - props.competencies_passed}`,
+            `Remaining ${props.context.assignments.length - props.competencies_passed}`,
         ],
         datasets: [{
-            data: [parseInt((props.competencies_passed / 34 * 100), 10), parseInt(((100 - props.competencies_passed / 34 * 100)), 10)],
+            data: [parseInt((props.competencies_passed / props.context.assignments.length * 100), 10), parseInt(((100 - props.competencies_passed / props.context.assignments.length * 100)), 10)],
             backgroundColor: [
             'rgb(4, 204, 4)',
             'rgb(204, 4, 4)',
@@ -21,14 +21,14 @@ const StudentCard = (props) => {
             ]
         }]
     };
-
+    console.log('thisishf asdis sfads alwasy sunny ', props.context.assignments.length)
     return (
         <Link to={`/student/${props.id}`}>
         <div className='student-card-container'>
             <span className='student-name'>{props.name}</span>
             <span className='student-email'>{props.email}</span>
             <div className='percentages-container'>
-                <span className='comps-left'>{parseInt(((props.competencies_passed / 34 * 100)), 10)}%</span>
+                <span className='comps-left'>{parseInt(((props.competencies_passed / props.context.assignments.length * 100)), 10)}%</span>
                 <Doughnut
                 data={data}
                 height={150}
