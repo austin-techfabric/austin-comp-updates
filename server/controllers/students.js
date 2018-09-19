@@ -108,7 +108,7 @@ module.exports = {
         const db = req.app.get('db');
         const {assignment, cohort} = req.params;
         if(assignment === 'assessments'){
-            db.get_assess_titles().then(assessTitles => {
+            db.assessments_by_cohort(cohort).then(assessTitles => {
                 let assessArray = assessTitles.map((title) => {
                     return {title: title.assessment_name, count: 0}
                 });
@@ -128,7 +128,7 @@ module.exports = {
             })
             
         }else if (assignment === 'competencies'){
-            db.get_comp_titles().then(compTitles => {
+            db.competencies_by_cohort(cohort).then(compTitles => {
                 let compArray = compTitles.map((title) => {
                         return {title: title.competency_name, count: 0}
                     });
