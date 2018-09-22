@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import StudentDisplay from './StudentDisplay';
 import {Redirect} from 'react-router-dom';
-import {context} from '../../components/shared/Context'; 
+import {staffContext} from '../shared/staffContext'; 
 
 class StudentContainer extends Component {
+
     constructor(){
         super()
         this.state = {
@@ -12,17 +13,16 @@ class StudentContainer extends Component {
     }
 
     componentDidMount(){
-        this.props.context.studentMethods.getStudentById(this.props.match.params.id)
+        this.props.staffContext.studentMethods.getStudentCompetenciesById(this.props.match.params.id)
     }
 
     render() {
-        const { student, user } = this.props.context
         return (
             <div className='student-container'>
-                {this.props.context.user ? <StudentDisplay user={user} student={student} {...this.props} /> : <Redirect to='/' />}
+                {this.props.staffContext.user ? <StudentDisplay {...this.props} /> : <Redirect to='/' />}
             </div>
         );
     }
 }
 
-export default context(StudentContainer)
+export default staffContext(StudentContainer)

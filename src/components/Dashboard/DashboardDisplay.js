@@ -1,18 +1,18 @@
 import React from 'react';
-import Overview from './OverView';
+import OverView from './OverView';
+
 
 const DashboardDisplay = (props) => {
-    const { student, user } = props.context
     return (
         <div className='dashboard-display-full-class'>
             <header>
                 <div>
                     <h2>
-                        <span className='dashboard-name'>{props.context.user.name}</span>
+                        <span className='dashboard-name'>{props.staffContext.user.name}</span>
                         <span className='spacer'>|</span>
-                        <span className='assigned-cohort'>{props.context.user.assignedCohort}</span>
+                        <span className='assigned-cohort'>{props.staffContext.user.assignedCohort}</span>
                         <span className='spacer'>|</span>
-                        <span>{props.context.user.position}</span>
+                        <span>{props.staffContext.user.position}</span>
                     </h2>
                 </div>
         
@@ -25,7 +25,7 @@ const DashboardDisplay = (props) => {
                 </div>
             </header>
             <div>
-                <Overview user={user} student={student} {...props}/>
+            <OverView {...props} />
             </div>
             
         </div>

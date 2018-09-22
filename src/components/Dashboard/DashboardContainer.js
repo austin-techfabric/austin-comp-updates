@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DashboardDisplay from './DashboardDisplay';
-import {Redirect} from 'react-router-dom';
-import {context} from '../shared/Context';
+import { Redirect } from 'react-router-dom';
+import { staffContext } from '../shared/staffContext';
 
 class DashboardContainer extends Component {
     constructor(props){
@@ -11,18 +11,11 @@ class DashboardContainer extends Component {
             date: new Date().toLocaleDateString()
         }
 
-        this.props.context.studentMethods.getAssignmentsByCohort();
     }
 
     componentDidMount() {
-
-        //refactor this so you dont have to use set timeout to make block async
-        setTimeout(() => {
-            this.props.context.studentMethods.getStudentsByCohort(true);
-            this.props.context.studentMethods.getAssignmentsByCohort();
-        }, 0)
-        
         this.liveClock = setInterval(() => this.tick(), 1000);
+        this.props.staffContext.studentMethods.getCohortStats(this.props.staffContext.assignmentType, this.props.staffContext.cohort)
     }
 
     componentWillUnmount() {
@@ -38,13 +31,12 @@ class DashboardContainer extends Component {
     }
 
     render() {
-        console.log(this.props.context.students)
         return (
             <div className='dashboard-container'>
-                {this.props.context.user ? <DashboardDisplay {...this.state} {...this.props}/> : <Redirect to='/' />}
+                <DashboardDisplay {...this.state} {...this.props}/>
             </div>
         );
     }
 }
 
-export default context(DashboardContainer);
+export default staffContext(DashboardContainer);

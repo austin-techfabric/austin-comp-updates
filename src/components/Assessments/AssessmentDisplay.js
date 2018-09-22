@@ -14,7 +14,9 @@ const AssessmentDisplay = (props) => {
                     <div>Completion</div>
                 </header>
                 {
-                props.students.map((student) => {
+                props.staffContext.assignmentsByCohort
+                .map((student) => {
+                    console.log('==================',student)
                     return <StudentAssessmentCard key={student.id} {...props} {...student} />
                 })
             }

@@ -1,41 +1,29 @@
 import React from 'react';
 
 const EditAssignments = (props) => {
-    console.log(props.assignments);
+    const { staffContext } = props
 
-    const assignmentList = props.assignmentType === 'assessments' ? props.assignments.map(assessment => {
+    let chosenAssignment = props.assignmentTypeStatus || 'competencies'
+
+    const assignmentList = chosenAssignment === 'assessments' ? props.staffContext.togglableAssignmentList.map(assessment => {
         console.log(assessment.assessment_name)
         return <div className='assignment-container' key={assessment.id}>
                     <div>{assessment.assessment_name}</div>
-                    <div>{assessment.active ? <p onClick={() => props.updateEditableAssignments(assessment.id, false)} className='assignment active'>active</p>: <p onClick={() => props.updateEditableAssignments(assessment.id, true)} className='assignment inactive'>inactive</p>}</div> 
+                    <div>{assessment.active ? <p onClick={() => props.staffContext.staffMethods.updateTogglableAssignment(assessment.id, false, chosenAssignment)} className='assignment active'>active</p>: <p onClick={() => props.staffContext.staffMethods.updateTogglableAssignment(assessment.id, true, chosenAssignment)} className='assignment inactive'>inactive</p>}</div> 
                 </div>
     })
     :
-    props.assignmentType === 'competencies' ? props.assignments.map(competency => {
+    chosenAssignment === 'competencies' ? props.staffContext.togglableAssignmentList.map(competency => {
         return <div className='assignment-container' key={competency.id}>
                     <div>{competency.category}</div>
                     <div>{competency.competency_name || competency.name}</div>
                     <div>{competency.description}</div>
-                    <div>{competency.active ? <p onClick={() => props.updateEditableAssignments(competency.id, false)} className='assignment active'>active</p>: <p onClick={() => props.updateEditableAssignments(competency.id, true)} className='assignment inactive'>inactive</p>}</div> 
+                    <div>{competency.active ? <p onClick={() => props.staffContext.staffMethods.updateTogglableAssignment(competency.id, false, chosenAssignment)} className='assignment active'>active</p>: <p onClick={() => props.staffContext.staffMethods.updateTogglableAssignment(competency.id, true, chosenAssignment)} className='assignment inactive'>inactive</p>}</div> 
                 </div>
     }) : null;
 
     return (
         <div className='editable-assignment-container'>
-            {props.assignmentType === 'assessments' ?
-            <div>
-                <h2>Assessment Name</h2>
-                <h2>Active</h2>
-            </div>
-            :
-            props.assignmentType === 'competencies' ?
-            <div>
-                <h2>Category</h2>
-                <h2>Competency Name</h2>
-                <h2>Description</h2>
-                <h2>Active</h2>
-            </div>
-            :''}   
             {assignmentList}
         </div>
     );

@@ -12,8 +12,8 @@ const DashboardDisplay = (props) => {
                     <div>Email</div>
                     <div>Completion</div>
                 </header>
-            {
-                props.students.map((student) => {
+                {
+                props.staffContext.assignmentsByCohort.map((student) => {
                     return <StudentCard key={student.id} {...props} {...student} />
                 })
             }

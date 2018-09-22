@@ -1,23 +1,34 @@
 import React, { Component } from 'react';
 import TrackerHeader from './TrackerHeader';
-import EditAssessments from './EditAssignments';
-import { context } from '../shared/Context';
+import EditAssignments from './EditAssignments';
+import { staffContext } from '../shared/staffContext';
 
 class TrackerContainer extends Component {
-    componentDidMount(){
-        this.props.context.userMethods.getEditableAssignments();
-        this.props.context.changeAssignmentEditableHandler('assignmentType', 'assessments');
-    }
-    render() {
 
-        const {changeAssignmentEditableHandler,  assignmentType, assignments, userMethods} = this.props.context;
+    state = {
+        assignmentTypeStatus: ''
+    }
+
+    componentDidMount(){
+        const { getListOfTogglableAssignments } = this.props.staffContext.staffMethods
+        getListOfTogglableAssignments('competencies')
+    }
+
+    changeHandler = (key, value) => {
+        this.setState({
+            [key]: value
+        })
+    }
+
+    render() {
+        
         return (
             <div className='tracker-container'>
-                <TrackerHeader assignmentType={assignmentType} changeHandler={changeAssignmentEditableHandler} />
-                <EditAssessments updateEditableAssignments={userMethods.updateEditableAssignments} assignmentType={assignmentType} assignments={assignments} />
+                <TrackerHeader changeHandler={this.changeHandler} {...this.state} {...this.props}/>
+                <EditAssignments assignmentTypeStatus={this.state.assignmentTypeStatus} {...this.props} />
             </div>
         );
     }
 }
 
-export default context(TrackerContainer)
+export default staffContext(TrackerContainer)

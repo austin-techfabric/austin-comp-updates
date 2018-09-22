@@ -12,7 +12,6 @@ app.use(bodyParser.json());
 
 massive(process.env.CONNECTION_STRING).then((db)=>{
     console.log('connected to database')
-    //run init on startup
     app.set('db', db);
 })
 
@@ -26,42 +25,39 @@ app.use(session({
     } 
 }));
 
-app.get('/api/cool', (req, res)=> res.send('worked!'));
 
-app.post('/api/register', login.register);
 app.get('/callback', login.auth0_login);
 app.post('/api/logout', login.logout);
 
-app.route('/api/students')
-.get(students.readStudents)
-.post(students.createStudent);
-
-app.route('/api/invited_staff')
-.get(userCont.getAllInvitedUsers)
-.post(userCont.inviteUser);
-
-
-app.route('/api/get_assignment/:assignmentType')
-.get(userCont.getEditableAssignments)
-.put(userCont.updateEditableAssignments)
-
-
-app.get('/api/get_assessments_by_cohort/:cohort', students.getAssessmentsByCohort)
-app.get('/api/get_competencies_by_cohort:cohort', students.getCompetenciesByCohort)
-
+//user routes 
 app.get('/api/get_logged_in_user', userCont.readLoggedInUser);
-app.get('/api/get_users_list', userCont.getAllUsers);
+app.route('/api/get_list_of_available_assignments/:assignment')
+.get(userCont.getTogglableAssignmentList)
+.put(userCont.updateTogglableAssignment)
 
-app.get('/api/get_students_by_cohort/:cohort', students.readStudentsByCohort);
-app.get('/api/get_student_status/:id', students.readStudentIdAndStatus);
-app.get('/api/get_student_by_id/:id', students.readStudentById);
-app.put(`/api/mark_competency_complete/:id`, students.markCompComplete);
 
-app.get('/api/students_assessments/:cohort', students.getStudentsAssessments);
-app.get('/api/get_student_assessments_by_id/:id', students.getStudentAssessmentsById);
-app.put('/api/mark_assessment_complete/:id', students.markAssessmentComplete);
+//student routes
+app.route('/api/students/:cohort')
+.get(students.readStudents)
+.post(students.createStudent)
+.put(students.editStudent);
 
-app.get('/api/get_assessments_by_cohort/:assignment/:cohort', students.getFullCohortStats);
+app.get('/api/get_competencies_by_cohort/:cohort', students.getAssignmentsByCohort)
+
+app.route('/api/get_student_competencies_by_id/:id')
+.get(students.getCompetenciesById)
+.put(students.markCompComplete)
+
+app.route(`/api/get_student_assessments_by_id/:id`)
+.get(students.getAssessmentsById)
+.put(students.markOffAssessment)
+
+// gives full cohort stats for dashboard view
+app.get('/api/get_cohort_stats_by_assignment/:assignment/:cohort', students.getCohortStatsByAssignment);
+
+
+
+
 
 const PORT = 4000;
 app.listen(PORT, ()=> console.log(`Server listening on port ${4000}`));

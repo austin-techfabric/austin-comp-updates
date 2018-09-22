@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { context } from '../shared/Context';
+import { staffContext } from '../shared/staffContext';
 import {Redirect} from 'react-router-dom';
 import CompetenciesDisplay from './CompetenciesDisplay';
 
-class DashboardContainer extends Component {
+class CompetenciesContainer extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -11,20 +11,20 @@ class DashboardContainer extends Component {
         }
     }
     componentDidMount(){
-
-        this.props.context.studentMethods.getStudentsByCohort(this.props.context.cohort, true)
-        this.props.context.studentMethods.getCompetenciesCountByCohort();
+        setTimeout(()=> {
+            this.props.staffContext.studentMethods.getAssignmentsByCohort(this.props.staffContext.cohort || this.props.staffContext.user.assignedCohort, 'competencies')
+            this.props.staffContext.studentMethods.getCohortStats('competencies', this.props.staffContext.cohort || this.props.staffContext.user.assignedCohort)
+        }, 0)
     }
 
     render() {
-
-        const { students } = this.props.context;
+        console.log()
         return (
             <div className='dashboard-container'>
-                {this.props.context.user ? <CompetenciesDisplay {...this.props} students={students} /> : <Redirect to='/' />}
+                {this.props.staffContext.user ? <CompetenciesDisplay {...this.props} /> : <Redirect to='/' />}
             </div>
         );
     }
 }
 
-export default context(DashboardContainer)
+export default staffContext(CompetenciesContainer)

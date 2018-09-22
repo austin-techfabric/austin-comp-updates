@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import {HamburgerIcon} from './Icons';
 import MobileLinks from './MobileLinks';
-import { context } from '../shared/Context';
+import { staffContext } from './staffContext';
 import { Link } from 'react-router-dom';
 import Logo from '../../styles/media/devmountain_logo.png';
 
@@ -23,8 +23,9 @@ class Header extends PureComponent {
         })
     }
 
-
+    
     render() {
+        console.log(this.props)
         return (
             <div className='header-container'>
                 <div>
@@ -33,7 +34,7 @@ class Header extends PureComponent {
                     </div>
                     <div className='nav-links-desktop'>
                        
-                           {this.props.context.user
+                           {this.props.staffContext.user
                             ?
                             <ul>
                                 <li><Link to='/dashboard'>Dashboard</Link></li>
@@ -56,7 +57,7 @@ class Header extends PureComponent {
                                         </div>
                                     </ul>
                                 </li>
-                                <li><span onClick={this.props.context.userMethods.logout}>logout</span></li>
+                                <li><span onClick={this.props.staffContext.staffMethods.logout}>logout</span></li>
                             </ul> 
                             : 
                            <ul>
@@ -76,4 +77,4 @@ class Header extends PureComponent {
     }
 }
 
-export default context(Header)
+export default staffContext(Header)

@@ -1,29 +1,39 @@
 import React, { Component } from 'react';
 import ClassListDisplay from './ClassListDisplay';
 import {Redirect} from 'react-router-dom';
-import {context} from '../shared/Context';
+import { staffContext } from '../shared/staffContext';
 
 class ClassListContainer extends Component {
     constructor(props){
         super(props)
         this.state = {
-            
+            name:'',
+            email: ''
         }
     }
-    componentDidMount(){
-        const {studentMethods, cohort} = this.props.context
-        studentMethods.getStudentsByCohort(cohort, true)
+    
+    changeHandler = (key, value) => {
+        this.setState({
+            [key]: value
+        })
+    }
+
+    clearInputs = () => {
+        this.setState({
+            name: '',
+            email: ''
+        })
     }
     
     render() {
 
-        const {students, changeHandler, changeCohortHandler, name, email, cohort, user} = this.props.context
         return (
             <div className='class-list-container'>
-                {this.props.context.user ?  <ClassListDisplay cohort={cohort || user.assignedCohort} addStudent={this.props.context.studentMethods.addStudent} name={name} email={email} changeHandler={changeHandler} changeCohortHandler={changeCohortHandler} students={students} user={user}/> : <Redirect to='/' />}
+            {this.props.staffContext.user ? <ClassListDisplay {...this.state} clearInputs={this.clearInputs} changeHandler={this.changeHandler} {...this.props} /> : <Redirect to='/'/>}
+                {/* <ClassListDisplay {...this.props} /> */}
             </div>
         );
     }
 }
 
-export default context(ClassListContainer);
+export default staffContext(ClassListContainer);

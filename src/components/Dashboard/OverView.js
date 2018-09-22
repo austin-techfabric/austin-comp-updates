@@ -1,16 +1,12 @@
 import React from 'react';
-import AssessmentGraph from './AssessmentGraph';
+import CohortBarGraph from './CohortBarGraph';
 const Overview = (props) => {
     
     return (
         <div className='overview-container'>
            <div>
                <div>
-                    <span>Cohort</span> | <select name='cohort' onChange={(e)=> {
-                        props.context.changeCohortHandler(e.target.name, e.target.value)
-                        props.context.studentMethods.getAssignmentsByCohort();
-                    }} value={props.cohort}>
-                        {props.context.cohort ? <option defaultValue value={props.context.cohort}>{`${props.context.cohort}`}</option> : <option defaultValue value={props.context.user.assignedCohort}>{`${props.context.user.assignedCohort}`}</option>}
+                    <span>Cohort</span> | <select name='cohort' onChange={(e)=> props.staffContext.changeCohort(props.staffContext.assignmentType, e.target.value)} value={props.staffContext.cohort} >
                         <option value='wpx1'>wpx1</option>
                         <option value='wpx2'>wpx2</option>
                         <option value='wpx3'>wpx3</option>
@@ -25,13 +21,13 @@ const Overview = (props) => {
                 </div>
 
                 <div className='type-container'>
-           <span>Type</span> | <select name='assignmentType' onChange={(e)=> props.context.changeAssignmentHandler(e.target.name, e.target.value)} value={props.context.assignmentType}>
+           <span>Type</span> | <select name='assignmentType' onChange={(e)=> {props.staffContext.studentMethods.getCohortStats(e.target.value, props.staffContext.cohort)}} value={props.staffContext.assignmentType}>
                     <option defaultValue value='competencies'>Competencies</option>
                     <option value='assessments'>Assessments</option>
                 </select>
                 </div>
            </div>
-           <AssessmentGraph {...props}/>
+           <CohortBarGraph {...props}/>
         </div>
     );
 };

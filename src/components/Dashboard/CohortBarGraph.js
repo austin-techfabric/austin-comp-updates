@@ -1,27 +1,19 @@
 import React from 'react';
 import {Bar} from 'react-chartjs-2';
-const Overview = (props) => {
-
-
-    // const assessList = props.student.map(assess => {
-    //     return assess.assessment_name || assess.competency_name
-    // })
-
+const CohortBarGraph = (props) => {
     
+    const {studentListByCohort, fullCohortStats} = props.staffContext;
 
-    const titles = props.context.assignments.map(items => {
+    const titles = fullCohortStats.map(items => {
         return items.name
     })
-    const count = props.context.assignments.map(items => {
+    const count = fullCohortStats.map(items => {
         return items.count
     })
-
-
     const data = {
         labels:titles,
         datasets: [
           {
-            
             backgroundColor: 'rgba(255,99,132,0.2)',
             borderColor: 'rgba(255,99,132,1)',
             borderWidth: 1,
@@ -43,7 +35,7 @@ const Overview = (props) => {
                 },
                 scaleLabel: {
                     display: true,
-                    labelString: props.context.assignmentType
+                    labelString: 'assignment type'
                   }
                 
             }],
@@ -59,8 +51,7 @@ const Overview = (props) => {
                             return label;
                         }
                     },
-                    
-                    max: props.context.students.length
+                    max: studentListByCohort.length
                 }
             }],
             
@@ -83,7 +74,7 @@ const Overview = (props) => {
     );
 };
 
-export default Overview;
+export default CohortBarGraph;
 
 
 

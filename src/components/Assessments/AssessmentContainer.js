@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
 import AssessmentDisplay from './AssessmentDisplay';
-import { context } from '../shared/Context';
+import { staffContext } from '../shared/staffContext';
 
 class AssessmentContainer extends Component {
     componentDidMount(){
-        this.props.context.studentMethods.getStudentsAssessments(this.props.context.cohort, true)
-        this.props.context.studentMethods.getAssessmentCountByCohort();
+        setTimeout(()=> {
+            this.props.staffContext.studentMethods.getAssignmentsByCohort(this.props.staffContext.cohort || this.props.staffContext.user.assignedCohort, 'assessments')
+            this.props.staffContext.studentMethods.getCohortStats('assessments', this.props.staffContext.cohort || this.props.staffContext.user.assignedCohort)
+        }, 0)
     }
     render() {
-        const { students } = this.props.context;
         return (
             <div className='assessment-container'>
-                {this.props.context.user ? <AssessmentDisplay {...this.props} students={students}/> : <Redirect to='/' />}
+                {this.props.staffContext.user ? <AssessmentDisplay {...this.props}/> : <Redirect to='/' />}
             </div>
         );
     }
 }
 
-export default context(AssessmentContainer);
+export default staffContext(AssessmentContainer);

@@ -1,1 +1,2 @@
-SELECT * FROM students;
+SELECT * FROM students
+WHERE cohort = $1;

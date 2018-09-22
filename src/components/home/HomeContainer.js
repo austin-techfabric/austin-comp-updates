@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
 import LoginDisplay from './LoginDisplay';
-import {Redirect} from 'react-router-dom';
-import { context } from '../shared/Context';
+import { Redirect } from 'react-router-dom';
+import { staffContext } from '../shared/staffContext';
 
 class HomeContainer extends Component {
-    
-    
-    changeHandler = (key, value) => {
-        this.setState({
-            [key]: value
-        })
-    }
 
     login = () => {
         const redirectUri = encodeURIComponent(`${window.location.origin}/callback`);
@@ -20,10 +13,10 @@ class HomeContainer extends Component {
     render() {
         return (
             <div  className='home-container'>
-                { this.props.context.user ? <Redirect to='/dashboard' /> : <LoginDisplay login={this.login} /> } 
+                <LoginDisplay login={this.login} {...this.props} />
             </div>
         );
     }
 }
 
-export default context(HomeContainer)
+export default staffContext(HomeContainer)
