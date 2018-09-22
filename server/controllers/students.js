@@ -4,7 +4,6 @@ module.exports = {
         const db = req.app.get('db')
         const { cohort } = req.params
         db.read_students(cohort).then(studentsArray => {
-            console.log(studentsArray)
             res.status(200).send(studentsArray)
         })
     },
@@ -138,7 +137,6 @@ module.exports = {
         const { id } = req.params;
         const { compName, passed } = req.query;
         db.mark_comp_complete(id, passed, compName).then(updatedCompList => {
-            console.log(updatedCompList)
             res.status(200).send(updatedCompList);
         }).catch(err => console.log(err));
     }

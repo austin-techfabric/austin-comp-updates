@@ -12,10 +12,12 @@ class ContextProvider extends Component {
             cohort:'',
             studentListByCohort: [],
             fullCohortStats: [],
+            invitedStaffList:[],
             togglableAssignmentList: [],
             assignmentsByCohort: [],
             studentAssessment: [],
             studentCompetencies: [],
+            staffList: [],
             assignmentType: 'competencies',
             changeCohort: (assignmentType, cohort) => {
                 this.setState(() =>{
@@ -55,6 +57,31 @@ class ContextProvider extends Component {
                         console.log(togglableAssignmentList);
                         this.setState({
                             togglableAssignmentList: togglableAssignmentList
+                        })
+                    })
+                },
+                getInvitedStaff: () => {
+                    axios.get('/api/invited_staff').then(({data: invitedStaffList}) => {
+                        this.setState({
+                            invitedStaffList: invitedStaffList
+                        })
+                    }).catch(err => console.log(err))
+                },
+                inviteStaff:(staffPosition, staffEmail) => {
+                    const newStaff = {
+                        position: staffPosition,
+                        email: staffEmail
+                    }
+                    axios.post('/api/invited_staff', newStaff).then(({data: invitedStaffList}) => {
+                        this.setState({
+                            invitedStaffList: invitedStaffList
+                        })
+                    }).catch(err => console.log(err))
+                },
+                getAllStaff: () => {
+                    axios.get('/api/staff').then(({data: staffList}) => {
+                        this.setState({
+                            staffList: staffList
                         })
                     })
                 },

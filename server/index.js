@@ -35,6 +35,13 @@ app.route('/api/get_list_of_available_assignments/:assignment')
 .get(userCont.getTogglableAssignmentList)
 .put(userCont.updateTogglableAssignment)
 
+app.route('/api/invited_staff')
+.get(userCont.getInvitedStaff)
+.post(userCont.inviteStaff)
+
+app.route('/api/staff')
+.get(userCont.getAllStaff)
+
 
 //student routes
 app.route('/api/students/:cohort')
@@ -56,7 +63,8 @@ app.route(`/api/get_student_assessments_by_id/:id`)
 app.get('/api/get_cohort_stats_by_assignment/:assignment/:cohort', students.getCohortStatsByAssignment);
 
 
-
+// downloadables
+app.get('/api/get_downloadable_list_by_cohort/:cohort', userCont.getDownloadableListByCohort)
 
 
 const PORT = 4000;

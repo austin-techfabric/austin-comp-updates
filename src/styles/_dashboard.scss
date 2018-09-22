@@ -18,6 +18,10 @@
         align-items: center;
         
     }
+    header > div:nth-child(1){
+        flex: 1.2;
+        
+    }
 
     header > div:nth-child(2){
         text-align: center;

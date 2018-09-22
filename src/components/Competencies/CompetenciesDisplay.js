@@ -12,10 +12,12 @@ const DashboardDisplay = (props) => {
                     <div>Email</div>
                     <div>Completion</div>
                 </header>
-                {
+                {props.staffContext.assignmentsByCohort ?
                 props.staffContext.assignmentsByCohort.map((student) => {
                     return <StudentCard key={student.id} {...props} {...student} />
                 })
+                :
+                "Loading..."
             }
             </div>
         </div>
