@@ -16,7 +16,6 @@ const AssessmentDisplay = (props) => {
                 {
                 props.staffContext.assignmentsByCohort
                 .map((student) => {
-                    console.log('==================',student)
                     return <StudentAssessmentCard key={student.id} {...props} {...student} />
                 })
             }

@@ -1,5 +1,7 @@
 import React from 'react';
 import CohortBarGraph from './CohortBarGraph';
+import Downloadable from './Downloadable';
+
 const Overview = (props) => {
     
     return (
@@ -21,13 +23,19 @@ const Overview = (props) => {
                 </div>
 
                 <div className='type-container'>
-           <span>Type</span> | <select name='assignmentType' onChange={(e)=> {props.staffContext.studentMethods.getCohortStats(e.target.value, props.staffContext.cohort)}} value={props.staffContext.assignmentType}>
+                    <span>Type</span> | <select name='assignmentType' onChange={(e)=> {props.staffContext.studentMethods.getCohortStats(e.target.value, props.staffContext.cohort)}} value={props.staffContext.assignmentType}>
                     <option defaultValue value='competencies'>Competencies</option>
                     <option value='assessments'>Assessments</option>
                 </select>
                 </div>
+                <div>
+                    <Downloadable />
+                </div>
            </div>
-           <CohortBarGraph {...props}/>
+           
+            <CohortBarGraph {...props}/>
+               
+          
         </div>
     );
 };

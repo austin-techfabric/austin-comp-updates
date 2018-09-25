@@ -10,6 +10,12 @@ main {
     margin: 0 auto;
     min-height: calc(100vh - 80px); }
 
+.dashboard-container .overview-container .downloadable, .student-container .comp-container > div:last-child .arrow-image-container, .student-assessment-display .assess-list-container .assess-container > div:last-child .arrow-image-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; }
+
 .student-container .st-dis-header-container .header-and-back-button-container, .student-assessment-display .st-dis-header-container .header-and-back-button-container {
   display: flex;
   flex-direction: column;
@@ -187,7 +193,8 @@ main {
       background-color: #50a9dc;
       box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.404);
       cursor: pointer;
-      position: relative; }
+      position: relative;
+      outline: rgba(80, 169, 220, 0.2); }
     .home-container .login-display button:after {
       content: '';
       position: absolute;
@@ -200,10 +207,10 @@ main {
       transition: .45s;
       display: inline-block;
       transition-timing-function: ease-out;
-      transform: scaleX(0);
+      transform: scaleX(0) rotate(135deg);
       box-shadow: 0px 0px 5px white; }
     .home-container .login-display button:hover:after {
-      transform: scaleX(1); }
+      transform: scaleX(1) rotate(135deg); }
 
 .mapped-student-container a {
   margin: 10px;
@@ -279,6 +286,15 @@ main {
     min-height: 400px;
     display: flex;
     padding: 10px; }
+    .dashboard-container .overview-container .downloadable {
+      margin: 10px 0;
+      background-color: #50a9dc;
+      height: 30px;
+      color: white;
+      width: 150px;
+      text-decoration: none;
+      border-radius: 2px;
+      box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.438); }
     .dashboard-container .overview-container > div {
       flex: 1;
       display: flex;
@@ -337,24 +353,89 @@ main {
       cursor: pointer; }
 
 .student-container .comp-container {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  font-size: 20px;
-  background: #dbdada;
   box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.418);
-  margin: 10px 0; }
-  .student-container .comp-container > div:not(.status-image-container) {
-    flex: 1; }
-  .student-container .comp-container .status-image-container {
-    width: 30px;
-    height: 30px; }
-    .student-container .comp-container .status-image-container img {
+  background: #dadada;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0; }
+  .student-container .comp-container > div:first-child {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    font-size: 20px;
+    margin: 5px 0; }
+    .student-container .comp-container > div:first-child > div:not(.status-image-container) {
+      flex: 1; }
+    .student-container .comp-container > div:first-child .status-image-container {
+      width: 30px;
+      height: 30px; }
+      .student-container .comp-container > div:first-child .status-image-container img {
+        width: 100%;
+        cursor: pointer; }
+  .student-container .comp-container > div:last-child {
+    height: 20px;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .4s;
+    position: relative; }
+    .student-container .comp-container > div:last-child > div:first-child {
       width: 100%;
-      cursor: pointer; }
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 15px; }
+      .student-container .comp-container > div:last-child > div:first-child button {
+        background: #50a9dc;
+        color: white;
+        height: 25px;
+        width: 120px;
+        border: none;
+        border-radius: 2px;
+        box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.384);
+        margin: 5px 0;
+        font-size: 16px;
+        align-self: flex-end; }
+    .student-container .comp-container > div:last-child textarea {
+      transition: .3s;
+      opacity: 0;
+      width: 100%;
+      font-size: 16px !important; }
+    .student-container .comp-container > div:last-child .arrow-image-container {
+      width: 100%;
+      cursor: pointer;
+      height: 20px;
+      position: absolute;
+      bottom: 0;
+      border-top: 1px solid silver;
+      background: #c7c7c7; }
+      .student-container .comp-container > div:last-child .arrow-image-container img {
+        transition: .3s;
+        height: 15px; }
+  .student-container .comp-container .open {
+    height: 160px !important;
+    padding: 0 10px 10px;
+    transition: .4s; }
+    .student-container .comp-container .open > div {
+      padding: 5px 0;
+      width: 100%; }
+      .student-container .comp-container .open > div .added-note {
+        text-align: center;
+        margin: 5px 0; }
+      .student-container .comp-container .open > div textarea {
+        opacity: 1;
+        width: 100%;
+        min-height: 50px;
+        background: #f1f1f1; }
+    .student-container .comp-container .open .arrow-image-container img {
+      transform: rotate(180deg); }
+    .student-container .comp-container .open .arrow-image-container:hover {
+      background: #b4b4b4; }
 
 .class-list-container header {
   width: 100%;
@@ -458,24 +539,89 @@ main {
       cursor: pointer; }
 
 .student-assessment-display .assess-list-container .assess-container {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  font-size: 20px;
-  background: #dbdada;
   box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.418);
-  margin: 10px 0; }
-  .student-assessment-display .assess-list-container .assess-container > div:not(.status-image-container) {
-    flex: 1; }
-  .student-assessment-display .assess-list-container .assess-container .status-image-container {
-    width: 30px;
-    height: 30px; }
-    .student-assessment-display .assess-list-container .assess-container .status-image-container img {
+  background: #dadada;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0; }
+  .student-assessment-display .assess-list-container .assess-container > div:first-child {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    font-size: 20px;
+    margin: 5px 0; }
+    .student-assessment-display .assess-list-container .assess-container > div:first-child > div:not(.status-image-container) {
+      flex: 1; }
+    .student-assessment-display .assess-list-container .assess-container > div:first-child .status-image-container {
+      width: 30px;
+      height: 30px; }
+      .student-assessment-display .assess-list-container .assess-container > div:first-child .status-image-container img {
+        width: 100%;
+        cursor: pointer; }
+  .student-assessment-display .assess-list-container .assess-container > div:last-child {
+    height: 20px;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .4s;
+    position: relative; }
+    .student-assessment-display .assess-list-container .assess-container > div:last-child > div:first-child {
       width: 100%;
-      cursor: pointer; }
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 15px; }
+      .student-assessment-display .assess-list-container .assess-container > div:last-child > div:first-child button {
+        background: #50a9dc;
+        color: white;
+        height: 25px;
+        width: 120px;
+        border: none;
+        border-radius: 2px;
+        box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.384);
+        margin: 5px 0;
+        font-size: 16px;
+        align-self: flex-end; }
+    .student-assessment-display .assess-list-container .assess-container > div:last-child textarea {
+      transition: .3s;
+      opacity: 0;
+      width: 100%;
+      font-size: 16px !important; }
+    .student-assessment-display .assess-list-container .assess-container > div:last-child .arrow-image-container {
+      width: 100%;
+      cursor: pointer;
+      height: 20px;
+      position: absolute;
+      bottom: 0;
+      border-top: 1px solid silver;
+      background: #c7c7c7; }
+      .student-assessment-display .assess-list-container .assess-container > div:last-child .arrow-image-container img {
+        transition: .3s;
+        height: 15px; }
+  .student-assessment-display .assess-list-container .assess-container .open {
+    height: 160px !important;
+    padding: 0 10px 10px;
+    transition: .4s; }
+    .student-assessment-display .assess-list-container .assess-container .open > div {
+      padding: 5px 0;
+      width: 100%; }
+      .student-assessment-display .assess-list-container .assess-container .open > div .added-note {
+        text-align: center;
+        margin: 5px 0; }
+      .student-assessment-display .assess-list-container .assess-container .open > div textarea {
+        opacity: 1;
+        width: 100%;
+        min-height: 50px;
+        background: #f1f1f1; }
+    .student-assessment-display .assess-list-container .assess-container .open .arrow-image-container img {
+      transform: rotate(180deg); }
+    .student-assessment-display .assess-list-container .assess-container .open .arrow-image-container:hover {
+      background: #b4b4b4; }
 
 .staff-display header {
   padding-bottom: 10px;
@@ -535,6 +681,9 @@ main {
       border: solid 1px rgba(54, 54, 54, 0.5);
       border-radius: 2px;
       margin: 0 10px; }
+
+.tracker-container a {
+  text-decoration: none; }
 
 .tracker-container header {
   padding-bottom: 10px;
@@ -605,8 +754,8 @@ main {
     font-weight: 900;
     cursor: pointer; }
   .tracker-container .assignment-container .assignment.active {
-    color: green;
-    text-shadow: 0 0 5px green; }
+    color: #4b9ece;
+    text-shadow: 0 0 8px #50a9dc; }
   .tracker-container .assignment-container .assignment.inactive {
     color: grey; }
   .tracker-container .assignment-container > div:not(:last-child) {

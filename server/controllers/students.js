@@ -18,21 +18,31 @@ module.exports = {
         }
 
         db.create_student(newStudent).then(addedStudentId => {
+
+            db.get_comp_titles().then(comp_titles => {
+                comp_titles.map((title) => {
+                    db.query('INSERT INTO status (comp_id, student_id, passed) VALUES ($1, $2, FALSE)', [title.id, addedStudentId[0].id])
+                })
+            }).catch(err => console.log(err))
+
             db.get_assess_titles().then(assessment_titles => {
-                assessment_titles.map((title, index) => {
+                assessment_titles.map((title) => {
                     db.query('INSERT INTO assessments_status (assess_id, student_id, passed) VALUES ($1, $2, FALSE)', [title.id, addedStudentId[0].id])
                 })
             })
-                db.get_comp_titles().then(comp_titles => {
-                    comp_titles.map((title, index) => {
-                        db.query('INSERT INTO status (comp_id, student_id, passed) VALUES ($1, $2, FALSE)', [title.id, addedStudentId[0].id])
-                    })
-                }).catch(err => console.log(err))
 
-                db.grab_all_students_after_creation(cohort).then(studentsArray => {
-                    console.log(studentsArray)
-                    res.status(200).send(studentsArray)
-                }).catch(err => console.log(err))
+            db.get_html_css_comp_titles().then(html_css_titles => {
+                html_css_titles.map((title) => {
+                    db.query('INSERT INTO html_css_status (comp_id, student_id, passed) VALUES ($1, $2, FALSE)', [title.id, addedStudentId[0].id])
+                })
+            }).catch(err => console.log(err))
+
+            
+
+            db.grab_all_students_after_creation(cohort).then(studentsArray => {
+                console.log(studentsArray)
+                res.status(200).send(studentsArray)
+            }).catch(err => console.log(err))
         }).catch(err => {
             res.status(404).send(`SQL error ${err.detail} error code: ${err.code}`)
         })
@@ -131,6 +141,32 @@ module.exports = {
         db.get_passed_comp_by_id(id).then((studentAssessments) => {
             res.status(200).send(studentAssessments)
         })
+    },
+    updateNotes: (req, res) => {
+        const db = req.app.get('db')
+        const { notes, assessId, studentId } = req.body
+        const { assignment } = req.params
+        console.log(notes, assessId, studentId, assignment)
+        switch(assignment){
+
+            case 'assessments':
+            db.update_assessment_note([notes, assessId, studentId]).then((assessmentsByCohort)=> {
+                res.status(200).send(assessmentsByCohort)
+            }).catch(err => console.log(err))
+            break;
+
+            case 'competencies':
+                db.update_competencies_note([notes, assessId, studentId]).then((competenciesByCohort)=> {
+                    console.log(competenciesByCohort)
+                    res.status(200).send(competenciesByCohort)
+                }).catch(err => console.log(err))
+            break;
+
+            default:
+                res.status(404).send('No Assignment by that type for that cohort in the database')
+            break;
+        }
+
     },
     markCompComplete: (req, res) => {
         const db = req.app.get('db');

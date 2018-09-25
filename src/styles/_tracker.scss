@@ -1,4 +1,8 @@
 .tracker-container {
+
+    a {
+        text-decoration: none;
+    }
     header {
         padding-bottom: 10px;
         border-bottom: 1px solid grey;
@@ -96,8 +100,8 @@
         }
 
         .assignment.active {
-            color: green;
-            text-shadow: 0 0 5px green;
+            color: rgb(75, 158, 206);
+            text-shadow: 0 0 8px rgba(80, 169, 220, 1);
             
         }
 

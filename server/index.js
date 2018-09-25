@@ -1,13 +1,16 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 const bodyParser = require('body-parser');
 const massive = require('massive');
 const session = require('express-session');
 const login = require('./controllers/login.js');
-const students = require('./controllers/students')
-const userCont = require('./controllers/user')
+const students = require('./controllers/students');
+const userCont = require('./controllers/user');
+
 require('dotenv').config();
 
+app.use( express.static( `${__dirname}/../build` ) );
 app.use(bodyParser.json());
 
 massive(process.env.CONNECTION_STRING).then((db)=>{
@@ -59,6 +62,8 @@ app.route(`/api/get_student_assessments_by_id/:id`)
 .get(students.getAssessmentsById)
 .put(students.markOffAssessment)
 
+app.put('/api/update_student_notes_by_assignment/:assignment', students.updateNotes)
+
 // gives full cohort stats for dashboard view
 app.get('/api/get_cohort_stats_by_assignment/:assignment/:cohort', students.getCohortStatsByAssignment);
 
@@ -66,6 +71,11 @@ app.get('/api/get_cohort_stats_by_assignment/:assignment/:cohort', students.getC
 // downloadables
 app.get('/api/get_downloadable_list_by_cohort/:cohort', userCont.getDownloadableListByCohort)
 
+console.log(path.join(__dirname, '../build/index.html'))
+
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+})
 
 const PORT = 4000;
 app.listen(PORT, ()=> console.log(`Server listening on port ${4000}`));

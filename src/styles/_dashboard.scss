@@ -61,6 +61,20 @@
         min-height: 400px;
         display: flex;
         padding: 10px;
+
+        .downloadable {
+            @extend %flex-row-center-center;
+            margin: 10px 0;
+            background-color: $button-color;
+            height: 30px;
+            color: white;
+            width: 150px;
+            text-decoration: none;
+            border-radius: $button-border-radius;
+            box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.438);
+        }
+
+        
         
         >div {
             flex: 1;

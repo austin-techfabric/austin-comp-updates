@@ -13,7 +13,7 @@ class HomeContainer extends Component {
     render() {
         return (
             <div  className='home-container'>
-                <LoginDisplay login={this.login} {...this.props} />
+                {this.props.staffContext.user ? <Redirect to='/competencies' /> : <LoginDisplay login={this.login} {...this.props} />}
             </div>
         );
     }

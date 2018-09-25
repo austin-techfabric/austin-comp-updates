@@ -34,7 +34,7 @@ class Header extends PureComponent {
                     </div>
                     <div className='nav-links-desktop'>
                        
-                           {this.props.staffContext.user
+                           {this.props.staffContext.user && this.props.staffContext.user.position !== 'Mentor'
                             ?
                             <ul>
                                 <li><Link to='/dashboard'>Dashboard</Link></li>
@@ -59,7 +59,22 @@ class Header extends PureComponent {
                                 </li>
                                 <li><span onClick={this.props.staffContext.staffMethods.logout}>logout</span></li>
                             </ul> 
-                            : 
+                            : this.props.staffContext.user ?
+                            <ul>
+                            <li><Link to='/dashboard'>Dashboard</Link></li>
+                            <li><Link to='/class_list'>Students</Link></li>
+                            <li className='sub-menu'>
+                                <span>Assignments</span>
+                                <ul className='sub-header-menu'>
+                                    <div>
+                                        <li><Link to='/competencies'>Competencies</Link></li>
+                                        <li><Link to='/assessments'>Assessments</Link></li>
+                                    </div>
+                                </ul>
+                            </li>
+                            <li><span onClick={this.props.staffContext.staffMethods.logout}>logout</span></li>
+                        </ul>
+                        :
                            <ul>
                                <li></li>
                                <li><Link to='/'>Login</Link></li>

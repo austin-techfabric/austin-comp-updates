@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import TrackerHeader from './TrackerHeader';
 import EditAssignments from './EditAssignments';
 import { staffContext } from '../shared/staffContext';
+import {Redirect} from 'react-router-dom';
 
 class TrackerContainer extends Component {
 
     state = {
-        assignmentTypeStatus: ''
+        assignmentTypeStatus: 'competencies'
     }
 
     componentDidMount(){
@@ -24,8 +25,14 @@ class TrackerContainer extends Component {
         
         return (
             <div className='tracker-container'>
-                <TrackerHeader changeHandler={this.changeHandler} {...this.state} {...this.props}/>
-                <EditAssignments assignmentTypeStatus={this.state.assignmentTypeStatus} {...this.props} />
+                {this.props.staffContext.user && this.props.staffContext.user.position !== 'Mentor' ?
+                    <div>
+                        <TrackerHeader changeHandler={this.changeHandler} {...this.state} {...this.props}/>
+                        <EditAssignments assignmentTypeStatus={this.state.assignmentTypeStatus} {...this.props} />
+                    </div>
+                    :
+                    <Redirect to='/' />
+                }
             </div>
         );
     }

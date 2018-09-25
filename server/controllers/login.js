@@ -40,7 +40,7 @@ module.exports = {
                             picture: picture,
                         }
 
-                        res.redirect('/dashboard')
+                        res.redirect('/competencies')
                     }else {
                         db.read_invited_users().then((invited_user_list) => {
                             //use filter to filter over invited_user_list and see if the registrants email matched any of the invited users
@@ -61,7 +61,7 @@ module.exports = {
                                         picture: picture,
                                     }
                                     console.log(req.session.user)
-                                    res.redirect('/dashboard')
+                                    res.redirect('/competencies')
                                 }).catch(err => {
                                     console.log(err)
                                     res.status(404).send(`SQL error ${err.detail} error code: ${err.code}`)

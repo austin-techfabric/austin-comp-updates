@@ -33,7 +33,7 @@ class DashboardContainer extends Component {
     render() {
         return (
             <div className='dashboard-container'>
-                <DashboardDisplay {...this.state} {...this.props}/>
+                {this.props.staffContext.user ? <DashboardDisplay {...this.state} {...this.props}/> : <Redirect to='/' />}
             </div>
         );
     }

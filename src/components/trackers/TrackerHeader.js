@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {Plus} from '../shared/Icons';
 
 const TrackerHeader = (props) => {
@@ -15,10 +16,10 @@ const TrackerHeader = (props) => {
                         <option value='assessments'>Assessments</option>
                     </select>
                 </div>
-               <button>
+               <Link to={`/trackers/add/${props.assignmentTypeStatus}`}><button>
                    <Plus />
                     Add
-               </button>
+               </button></Link>
            </header>
     );
 };

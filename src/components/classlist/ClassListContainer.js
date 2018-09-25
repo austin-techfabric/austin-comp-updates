@@ -29,8 +29,7 @@ class ClassListContainer extends Component {
 
         return (
             <div className='class-list-container'>
-            {this.props.staffContext.user ? <ClassListDisplay {...this.state} clearInputs={this.clearInputs} changeHandler={this.changeHandler} {...this.props} /> : <Redirect to='/'/>}
-                {/* <ClassListDisplay {...this.props} /> */}
+                {this.props.staffContext.user ? <ClassListDisplay {...this.state} clearInputs={this.clearInputs} changeHandler={this.changeHandler} {...this.props} /> : <Redirect to='/'/>}
             </div>
         );
     }

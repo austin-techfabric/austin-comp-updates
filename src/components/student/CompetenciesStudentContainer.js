@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import StudentDisplay from './CompetenciesStudentDisplay';
+import CompetenciesStudentDisplay from './CompetenciesStudentDisplay';
 import {Redirect} from 'react-router-dom';
 import {staffContext} from '../shared/staffContext'; 
 
-class StudentContainer extends Component {
+class CompetenciesStudentContainer extends Component {
 
     constructor(){
         super()
@@ -33,10 +33,10 @@ class StudentContainer extends Component {
     render() {
         return (
             <div className='student-container'>
-                {this.props.staffContext.user ? <StudentDisplay {...this.state} toggleButton={this.toggleButton} onChange={this.onChange} {...this.props} /> : <Redirect to='/' />}
+                {this.props.staffContext.user ? <CompetenciesStudentDisplay {...this.state} toggleButton={this.toggleButton} onChange={this.onChange} {...this.props} /> : <Redirect to='/' />}
             </div>
         );
     }
 }
 
-export default staffContext(StudentContainer)
+export default staffContext(CompetenciesStudentContainer)

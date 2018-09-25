@@ -2,23 +2,26 @@ import React from 'react';
 import {Bar} from 'react-chartjs-2';
 const CohortBarGraph = (props) => {
     
-    const {studentListByCohort, fullCohortStats} = props.staffContext;
+    const {studentListByCohort, fullCohortStats, user} = props.staffContext;
 
-    const titles = fullCohortStats.map(items => {
+    console.log(fullCohortStats, user);
+    let titles = fullCohortStats && user ? fullCohortStats.map(items => {
         return items.name
-    })
-    const count = fullCohortStats.map(items => {
+    }) : ''
+    let count = fullCohortStats && user ? fullCohortStats.map(items => {
         return items.count
-    })
+    }) : ''
+
+    
     const data = {
         labels:titles,
         datasets: [
           {
-            backgroundColor: 'rgba(255,99,132,0.2)',
-            borderColor: 'rgba(255,99,132,1)',
+            backgroundColor: 'rgba(80, 169, 220, 0.4)',
+            borderColor: 'rgba(80, 169, 220, 1)',
             borderWidth: 1,
-            hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-            hoverBorderColor: 'rgba(255,99,132,1)',
+            hoverBackgroundColor: 'rgba(80, 169, 220, 1)',
+            hoverBorderColor: 'rgba(60, 149, 200, 1)',
             data: count
           }
         ]

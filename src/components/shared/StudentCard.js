@@ -12,12 +12,12 @@ const StudentCard = (props) => {
         datasets: [{
             data: [parseInt((props.competencies_passed / props.staffContext.fullCohortStats.length * 100), 10), parseInt(((100 - props.competencies_passed / props.staffContext.fullCohortStats.length * 100)), 10)],
             backgroundColor: [
-            'rgb(4, 204, 4)',
-            'rgb(204, 4, 4)',
+            'rgba(80, 169, 220, 0.7)',
+            'rgb(150, 150, 150)',
             ],
             hoverBackgroundColor: [
-            'rgb(4, 204, 4)',
-            'rgb(204, 4, 4)',
+            'rgba(65, 154, 205, 1)',
+            'rgb(125, 125, 125)',
             ]
         }]
     };
@@ -35,7 +35,10 @@ const StudentCard = (props) => {
                 redraw = {true}
                 options={{
                     maintainAspectRatio: true,
-                    responsive: true
+                    responsive: true,
+                    animation: {
+                        duration: 0
+                    }
                 }}
                 />
             </div>

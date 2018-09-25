@@ -15,14 +15,15 @@ class ContextProvider extends Component {
             invitedStaffList:[],
             togglableAssignmentList: [],
             assignmentsByCohort: [],
-            studentAssessment: [],
-            studentCompetencies: [],
+            studentAssignment: [],
             staffList: [],
+            downloadableList: [],
             assignmentType: 'competencies',
             changeCohort: (assignmentType, cohort) => {
                 this.setState(() =>{
                     this.state.studentMethods.getStudents(cohort);
                     this.state.studentMethods.getCohortStats(assignmentType, cohort)
+                    this.state.studentMethods.getDownloadableListByCohort(cohort, assignmentType);
                    return { 
                         cohort: cohort,
                         assignmentType: assignmentType
@@ -36,6 +37,7 @@ class ContextProvider extends Component {
                         this.setState(()=>{
                             this.state.studentMethods.getStudents(user.assignedCohort)
                             this.state.studentMethods.getCohortStats(this.state.assignmentType, user.assignedCohort)
+                            this.state.studentMethods.getDownloadableListByCohort(user.assignedCohort, this.state.assignmentType);
                             return {
                                 user: user,
                                 cohort: user.assignedCohort
@@ -96,19 +98,19 @@ class ContextProvider extends Component {
             studentMethods: {
                 getStudents: (cohort) => {
                     axios.get(`/api/students/${cohort}`).then(response => {
-                        console.log(response)
                         this.setState({
                             studentListByCohort: response.data
                         })
                     })
                 },
                 getCohortStats: (assignmentType, cohort) => {
-                    
                     axios.get(`/api/get_cohort_stats_by_assignment/${assignmentType}/${cohort}`).then(({data: fullCohortStats})=>{
-                        console.log(fullCohortStats);
-                        this.setState({
+                        this.setState(() => {
+                            this.state.studentMethods.getDownloadableListByCohort(cohort, assignmentType);
+                           return {
                             assignmentType: assignmentType,
                             fullCohortStats: fullCohortStats
+                        }
                         })
                     })
                 },
@@ -121,41 +123,51 @@ class ContextProvider extends Component {
                 },
                 getAssignmentsByCohort: (cohort, assignment) => {
                     axios.get(`/api/get_competencies_by_cohort/${cohort}?assignment=${assignment}`).then(({data: assignmentsByCohort}) => {
-                        console.log(assignmentsByCohort)
                         this.setState({
                             assignmentsByCohort: assignmentsByCohort
                         })
                     })
                 },
                 getStudentAssessmentById: (id) => {
-                    axios.get(`/api/get_student_assessments_by_id/${id}`).then(({data: studentAssessment}) => {
-                        console.log(studentAssessment)
+                    axios.get(`/api/get_student_assessments_by_id/${id}`).then(({data: studentAssignment}) => {
                         this.setState({
-                            studentAssessment: studentAssessment
+                            studentAssignment: studentAssignment
                         })
                     })
                 },
                 markAssessComplete: (assessmentName, id, passed) => {
-                    console.log(assessmentName, id, passed)
-                    axios.put(`/api/get_student_assessments_by_id/${id}?assessmentName=${assessmentName}&passed=${passed}`).then(({data: studentAssessment}) => {
+                    axios.put(`/api/get_student_assessments_by_id/${id}?assessmentName=${assessmentName}&passed=${passed}`).then(({data: studentAssignment}) => {
                         this.setState({
-                            studentAssessment: studentAssessment
+                            studentAssignment: studentAssignment
                         })
                     })
                 },
                 getStudentCompetenciesById: (id) => {
-                    axios.get(`/api/get_student_competencies_by_id/${id}`).then(({data: studentCompetencies}) => {
-                        console.log(studentCompetencies)
+                    axios.get(`/api/get_student_competencies_by_id/${id}`).then(({data: studentAssignment}) => {
                         this.setState({
-                            studentCompetencies: studentCompetencies
+                            studentAssignment: studentAssignment
+                        })
+                    })
+                },
+                addNoteToAssignment:(notes, assessId, studentId, assignmentType) => {
+                    console.log(notes, assessId, studentId, assignmentType)
+                    axios.put(`/api/update_student_notes_by_assignment/${assignmentType}`, {notes, assessId, studentId}).then(({data: studentAssignment}) => {
+                        this.setState({
+                            studentAssignment: studentAssignment
                         })
                     })
                 },
                 markCompComplete: (compName, id, passed) => {
-                    console.log(compName, id, passed)
-                    axios.put(`/api/get_student_competencies_by_id/${id}?compName=${compName}&passed=${passed}`).then(({data: studentCompetencies}) => {
+                    axios.put(`/api/get_student_competencies_by_id/${id}?compName=${compName}&passed=${passed}`).then(({data: studentAssignment}) => {
                         this.setState({
-                            studentCompetencies: studentCompetencies
+                            studentAssignment: studentAssignment
+                        })
+                    })
+                },
+                getDownloadableListByCohort: (cohort, assignment) => {
+                    axios.get(`/api/get_downloadable_list_by_cohort/${cohort}?assignment=${assignment}`).then(({data: downloadableList}) =>{
+                        this.setState({
+                            downloadableList: downloadableList
                         })
                     })
                 }
