@@ -18,7 +18,6 @@ class CompetenciesContainer extends Component {
     }
 
     render() {
-        console.log()
         return (
             <div className='dashboard-container'>
                 {this.props.staffContext.user ? <CompetenciesDisplay {...this.props} /> : <Redirect to='/' />}

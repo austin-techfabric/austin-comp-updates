@@ -21,7 +21,6 @@ const StudentCard = (props) => {
             ]
         }]
     };
-    console.log('thisishf asdis sfads alwasy sunny ', props.staffContext.fullCohortStats.length)
     return (
         <Link to={`/student/${props.id}`}>
         <div className='student-card-container'>

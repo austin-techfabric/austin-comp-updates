@@ -7,7 +7,6 @@ class Downloadable extends Component {
     render() {
         const {assignmentType, downloadableList, cohort} = this.props.staffContext
         let data = downloadableList;
-        console.log('data ============',assignmentType, cohort)
         return (
             <CSVLink data={data}
                 filename={`${cohort}-${assignmentType}.csv`}

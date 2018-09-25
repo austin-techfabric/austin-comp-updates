@@ -7,8 +7,10 @@ const session = require('express-session');
 const login = require('./controllers/login.js');
 const students = require('./controllers/students');
 const userCont = require('./controllers/user');
+const helmet = require('helmet')
 
 require('dotenv').config();
+app.use(helmet())
 
 app.use( express.static( `${__dirname}/../build` ) );
 app.use(bodyParser.json());
@@ -71,7 +73,6 @@ app.get('/api/get_cohort_stats_by_assignment/:assignment/:cohort', students.getC
 // downloadables
 app.get('/api/get_downloadable_list_by_cohort/:cohort', userCont.getDownloadableListByCohort)
 
-console.log(path.join(__dirname, '../build/index.html'))
 
 app.get('*', (req, res)=>{
   res.sendFile(path.join(__dirname, '../build/index.html'));

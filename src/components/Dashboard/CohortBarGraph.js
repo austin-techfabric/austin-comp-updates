@@ -4,7 +4,6 @@ const CohortBarGraph = (props) => {
     
     const {studentListByCohort, fullCohortStats, user} = props.staffContext;
 
-    console.log(fullCohortStats, user);
     let titles = fullCohortStats && user ? fullCohortStats.map(items => {
         return items.name
     }) : ''

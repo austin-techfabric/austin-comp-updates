@@ -33,7 +33,6 @@ class ContextProvider extends Component {
             staffMethods: {
                 getUser: () => {
                     axios.get('/api/get_logged_in_user').then(({data: user})=>{
-                        console.log('getting user')
                         this.setState(()=>{
                             this.state.studentMethods.getStudents(user.assignedCohort)
                             this.state.studentMethods.getCohortStats(this.state.assignmentType, user.assignedCohort)
@@ -48,7 +47,6 @@ class ContextProvider extends Component {
                 },
                 getListOfTogglableAssignments: (assignment) => {
                     axios.get(`/api/get_list_of_available_assignments/${assignment}`).then(({data: togglableAssignmentList}) => {
-                        console.log(togglableAssignmentList);
                         this.setState({
                             togglableAssignmentList: togglableAssignmentList
                         })
@@ -56,7 +54,6 @@ class ContextProvider extends Component {
                 },
                 updateTogglableAssignment: (assignment_id, active, assignment) => {
                     axios.put(`/api/get_list_of_available_assignments/${assignment}`, {id: assignment_id, active: active}).then(({data: togglableAssignmentList}) => {
-                        console.log(togglableAssignmentList);
                         this.setState({
                             togglableAssignmentList: togglableAssignmentList
                         })
@@ -150,7 +147,6 @@ class ContextProvider extends Component {
                     })
                 },
                 addNoteToAssignment:(notes, assessId, studentId, assignmentType) => {
-                    console.log(notes, assessId, studentId, assignmentType)
                     axios.put(`/api/update_student_notes_by_assignment/${assignmentType}`, {notes, assessId, studentId}).then(({data: studentAssignment}) => {
                         this.setState({
                             studentAssignment: studentAssignment

@@ -12,7 +12,6 @@ const AssessmentStudentView = (props) => {
         }
     })
     let percentageComplete = (comPassed/studentAssignment.length) * 100;
-    console.log(props.staffContext)
     const assessList = studentAssignment.map(assess => {
         return <div key={assess.assess_id} style={assess.passed ? {backgroundColor:"#e0d0d0"} : {textDecoration: 'none'}} className='assess-container'>
                     <div>

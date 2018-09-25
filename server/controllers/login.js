@@ -60,7 +60,6 @@ module.exports = {
                                         assignedCohort: user[0].assigned_cohort, 
                                         picture: picture,
                                     }
-                                    console.log(req.session.user)
                                     res.redirect('/competencies')
                                 }).catch(err => {
                                     console.log(err)
@@ -68,8 +67,6 @@ module.exports = {
                                 })
                 
 
-                            }else{
-                                console.log('this is probably the real test')
                             }
 
                         })

@@ -29,7 +29,6 @@ class StaffContainer extends Component {
     }
     
     render() {
-        console.log(this.props.staffContext.invitedStaffList);
         return (
             <div>
                 { this.props.staffContext.user ? <StaffView clearInputs={this.clearInputs} changeHandler={this.changeHandler} {...this.state} {...this.props}/>  : <Redirect to='/' />}

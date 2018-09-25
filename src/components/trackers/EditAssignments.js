@@ -6,7 +6,6 @@ const EditAssignments = (props) => {
     let chosenAssignment = props.assignmentTypeStatus || 'competencies'
 
     const assignmentList = chosenAssignment === 'assessments' ? props.staffContext.togglableAssignmentList.map(assessment => {
-        console.log(assessment.assessment_name)
         return <div className='assignment-container' key={assessment.id}>
                     <div>{assessment.assessment_name}</div>
                     <div>{assessment.active ? <p onClick={() => props.staffContext.staffMethods.updateTogglableAssignment(assessment.id, false, chosenAssignment)} className='assignment active'>active</p>: <p onClick={() => props.staffContext.staffMethods.updateTogglableAssignment(assessment.id, true, chosenAssignment)} className='assignment inactive'>inactive</p>}</div> 

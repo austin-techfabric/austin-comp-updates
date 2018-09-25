@@ -1,6 +1,5 @@
 module.exports = {
     readLoggedInUser:(req, res) => {
-        console.log('resetting session')
         res.status(201).send(req.session.user)
     },
     getTogglableAssignmentList: (req, res) => {
@@ -52,7 +51,6 @@ module.exports = {
     getInvitedStaff: (req, res) => {
         const db = req.app.get('db')
         db.read_invited_users().then(invitedUsersList => {
-            console.log(invitedUsersList)
             res.status(200).send(invitedUsersList)
         })
     },

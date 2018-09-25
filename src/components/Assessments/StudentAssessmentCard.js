@@ -38,16 +38,13 @@ const StudentAssessmentCard = (props) => {
         
         if(node.current.style.backgroundColor === origColor){
             node.current.style.backgroundColor = hoverColor
-            console.log(node.current.style.backgroundColor)
         }else if (node.current.style.backgroundColor === hoverColor){
             node.current.style.backgroundColor = origColor
-            console.log(node.current.style.backgroundColor)
         }
     }
 
 
 
-    console.log(left)
     return (
         <Link to={`/assessments/student/${props.id}`}>
         <div className='student-card-container'>
