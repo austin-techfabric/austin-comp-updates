@@ -21,7 +21,7 @@ const DashboardDisplay = (props) => {
                 </div>
 
                 <div>
-                   <h2>{`${props.date} - ${props.time}`}</h2>
+                   <h2>{`${props.date}`}</h2>
                 </div>
             </header>
             <div>

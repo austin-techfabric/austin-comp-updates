@@ -7,28 +7,15 @@ class DashboardContainer extends Component {
     constructor(props){
         super(props)
         this.state = {
-            time: new Date().toLocaleTimeString(),
             date: new Date().toLocaleDateString()
         }
 
     }
 
     componentDidMount() {
-        this.liveClock = setInterval(() => this.tick(), 1000);
         this.props.staffContext.studentMethods.getCohortStats(this.props.staffContext.assignmentType, this.props.staffContext.cohort)
     }
 
-    componentWillUnmount() {
-        clearInterval(this.liveClock);
-    }
-
-
-    tick = () => {
-        this.setState({
-            time: new Date().toLocaleTimeString(),
-            date: new Date().toLocaleDateString()
-        });
-    }
 
     render() {
         return (
