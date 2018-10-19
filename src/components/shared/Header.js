@@ -81,12 +81,10 @@ class Header extends PureComponent {
                                <li><Link to='/'>Login</Link></li>
                             </ul>
                            }
-                        
                     </div>
                     <MobileLinks toggle={this.state.toggle}>
                         <HamburgerIcon toggleMobileLinks={this.toggleMobileLinks}/>
                     </MobileLinks>
-                    
                 </div>
             </div>
         );
