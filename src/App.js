@@ -11,6 +11,8 @@ import AssessmentStudentViewContainer from './components/AssessmentStudentView/A
 import StaffContainer from './components/staff/StaffContainer';
 import TrackerContainer from './components/trackers/TrackerContainer';
 import AddTrackerContainer from './components/addTracker/AddTrackerContainer';
+import HTMLCompetenciesStudentContainer from './components/HtmlCssIndividual/CompetenciesStudentContainer'
+import HtmlCssContainer from './components/HtmlCss/HtmlCssContainer';
 import './Main.css';
 
 class App extends Component {
@@ -26,8 +28,10 @@ class App extends Component {
             <Route path='/class_list' component={ClassListContainer} />
             <Route exact path='/assessments' component={AssessmentContainer} />
             <Route path='/assessments/student/:id' component={AssessmentStudentViewContainer}/>
+            <Route path='/student/html_css/:id' component={HTMLCompetenciesStudentContainer}/>
             <Route path='/competencies' component={CompetenciesContainer} />
             <Route path='/student/:id' component={CompetenciesStudentContainer}/>
+            <Route path='/html_css' component={HtmlCssContainer} />
             <Route exact path='/trackers' component={TrackerContainer} />
             <Route path='/trackers/add/:assignment' component={AddTrackerContainer} />
             <Route path='*' render={() => {

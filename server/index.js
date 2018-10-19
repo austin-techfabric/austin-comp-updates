@@ -64,6 +64,10 @@ app.route(`/api/get_student_assessments_by_id/:id`)
 .get(students.getAssessmentsById)
 .put(students.markOffAssessment)
 
+app.route(`/api/get_student_html_css_by_id/:id`)
+.get(students.getHtmlCssById)
+.put(students.markOffHTMLCSS)
+
 app.put('/api/update_student_notes_by_assignment/:assignment', students.updateNotes)
 
 // gives full cohort stats for dashboard view

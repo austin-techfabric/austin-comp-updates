@@ -20,6 +20,12 @@ module.exports = {
                 }).catch(err => console.log(err))
             break;
 
+            case 'html_css':
+                db.get_all_html_css().then(editableAssignments => {
+                    res.status(200).send(editableAssignments)
+                }).catch(err => console.log(err))
+            break;
+
             default:
                 res.status(404).send('No Assignment by that type in the database')
             break;
@@ -39,6 +45,12 @@ module.exports = {
 
             case 'competencies':
                 db.enable_disable_competencies([active, id]).then(editableAssignments => {
+                    res.status(200).send(editableAssignments)
+                }).catch(err => console.log(err))
+            break;
+
+            case 'html_css':
+                db.enable_disable_html_css([active, id]).then(editableAssignments => {
                     res.status(200).send(editableAssignments)
                 }).catch(err => console.log(err))
             break;
@@ -79,6 +91,12 @@ module.exports = {
             break
             case 'assessments':
                 db.get_downloadable_list_by_cohort_of_assessments([cohort]).then(downloadableListOFStudents => {
+                    res.status(200).send(downloadableListOFStudents)
+                })
+            break
+
+            case 'html_css':
+                db.get_downloadable_list_by_cohort_html_css([cohort]).then(downloadableListOFStudents => {
                     res.status(200).send(downloadableListOFStudents)
                 })
             break

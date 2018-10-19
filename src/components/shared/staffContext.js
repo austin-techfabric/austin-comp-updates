@@ -101,6 +101,7 @@ class ContextProvider extends Component {
                     })
                 },
                 getCohortStats: (assignmentType, cohort) => {
+                    console.log(assignmentType, cohort)
                     axios.get(`/api/get_cohort_stats_by_assignment/${assignmentType}/${cohort}`).then(({data: fullCohortStats})=>{
                         this.setState(() => {
                             this.state.studentMethods.getDownloadableListByCohort(cohort, assignmentType);
@@ -119,7 +120,9 @@ class ContextProvider extends Component {
                     })
                 },
                 getAssignmentsByCohort: (cohort, assignment) => {
+                    console.log(cohort, assignment)
                     axios.get(`/api/get_competencies_by_cohort/${cohort}?assignment=${assignment}`).then(({data: assignmentsByCohort}) => {
+                        
                         this.setState({
                             assignmentsByCohort: assignmentsByCohort
                         })
@@ -133,7 +136,17 @@ class ContextProvider extends Component {
                     })
                 },
                 markAssessComplete: (assessmentName, id, passed) => {
+                    console.log('asseshit')
                     axios.put(`/api/get_student_assessments_by_id/${id}?assessmentName=${assessmentName}&passed=${passed}`).then(({data: studentAssignment}) => {
+                        this.setState({
+                            studentAssignment: studentAssignment
+                        })
+                    })
+                },
+                markHtmlCssComplete: (assessmentName, id, passed) => {
+                    console.log('htmlhit')
+                    axios.put(`/api/get_student_html_css_by_id/${id}?compName=${assessmentName}&passed=${passed}`).then(({data: studentAssignment}) => {
+                        console.log('response from checking off html css', studentAssignment)
                         this.setState({
                             studentAssignment: studentAssignment
                         })
@@ -141,6 +154,13 @@ class ContextProvider extends Component {
                 },
                 getStudentCompetenciesById: (id) => {
                     axios.get(`/api/get_student_competencies_by_id/${id}`).then(({data: studentAssignment}) => {
+                        this.setState({
+                            studentAssignment: studentAssignment
+                        })
+                    })
+                },
+                getStudentHtmlCssById: (id) => {
+                    axios.get(`/api/get_student_html_css_by_id/${id}`).then(({data: studentAssignment}) => {
                         this.setState({
                             studentAssignment: studentAssignment
                         })
@@ -154,6 +174,7 @@ class ContextProvider extends Component {
                     })
                 },
                 markCompComplete: (compName, id, passed) => {
+                    console.log('asseshit')
                     axios.put(`/api/get_student_competencies_by_id/${id}?compName=${compName}&passed=${passed}`).then(({data: studentAssignment}) => {
                         this.setState({
                             studentAssignment: studentAssignment

@@ -94,6 +94,29 @@ module.exports = {
                     res.status(200).send(compResponse)
                 })
             })
+        }else if (assignment === 'html_css'){
+            db.html_css_by_cohort(cohort).then(compTitles => {
+                
+                let compArray = compTitles.map((title) => {
+                        return {comp_id: title.comp_id, title: title.competency_name, count: 0}
+                    });
+
+                    console.log(cohort)
+                db.get_full_class_stats_html_css([true, cohort]).then(competencies => {
+                    let compResponse = compArray.map((title) => {
+                            let index = competencies.findIndex(actual => actual.competency_name == title.title)
+                            if(index !== -1){
+                                return {comp_id: title.comp_id, name: competencies[index].competency_name, count: +competencies[index].count}
+                            }else{
+                                return {comp_id: title.comp_id, name: title.title, count: +title.count}
+                            }
+                        })
+
+                        console.log(compResponse)
+
+                    res.status(200).send(compResponse)
+                })
+            })
         }
     },
     getAssignmentsByCohort: (req, res) => {
@@ -115,6 +138,12 @@ module.exports = {
                 }).catch(err => console.log(err))
             break;
 
+            case 'html_css':
+                db.get_passed_html_css(cohort).then((competenciesByCohort)=> {
+                    res.status(200).send(competenciesByCohort)
+                }).catch(err => console.log(err))
+            break;
+
             default:
                 res.status(404).send('No Assignment by that type for that cohort in the database')
             break;
@@ -126,6 +155,21 @@ module.exports = {
         db.get_passed_assessment_by_id(id).then((studentAssessments) => {
             res.status(200).send(studentAssessments)
         })
+    },
+    getHtmlCssById: (req, res) => {
+        const db = req.app.get('db')
+        const { id } = req.params
+        db.get_passed_html_css_by_id(id).then((studentAssessments) => {
+            res.status(200).send(studentAssessments)
+        })
+    },
+    markOffHTMLCSS: (req, res) => {
+        const db = req.app.get('db');
+        const {id} = req.params;
+        const  {compName, passed} = req.query;
+        db.mark_html_css_complete(id, passed, compName).then((updatedAssessmentList) => {
+            res.status(200).send(updatedAssessmentList);
+        }).catch(err => console.log(err));
     },
     markOffAssessment: (req, res) => {
         const db = req.app.get('db');
@@ -162,6 +206,13 @@ module.exports = {
                 }).catch(err => console.log(err))
             break;
 
+            case 'html_css':
+                db.update_html_css_notes([notes, assessId, studentId]).then((competenciesByCohort)=> {
+                    console.log(competenciesByCohort)
+                    res.status(200).send(competenciesByCohort)
+                }).catch(err => console.log(err))
+            break;
+
             default:
                 res.status(404).send('No Assignment by that type for that cohort in the database')
             break;
@@ -176,7 +227,6 @@ module.exports = {
             res.status(200).send(updatedCompList);
         }).catch(err => console.log(err));
     }
-
 }
 
 

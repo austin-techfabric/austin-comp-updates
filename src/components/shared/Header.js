@@ -53,6 +53,7 @@ class Header extends PureComponent {
                                         <div>
                                             <li><Link to='/competencies'>Competencies</Link></li>
                                             <li><Link to='/assessments'>Assessments</Link></li>
+                                            <li><Link to='/html_css'>HTML/CSS</Link></li>
                                         </div>
                                     </ul>
                                 </li>
