@@ -31,7 +31,8 @@ app.use(session({
 }));
 
 
-app.get('/callback', login.auth0_login);
+app.get('/auth/login', login.loginForward);
+app.get('/auth/devmtn/callback', login.authCallback);
 app.post('/api/logout', login.logout);
 
 //user routes 
