@@ -23,7 +23,7 @@ module.exports = {
         console.log(student)
 
 // dont leave hardcoded 
-        if(student.includes('applicant') && !student.includes('admin') && !student.includes('mentor') && !student.includes('lead mentor') && !student.includes('lecturer') && !student.includes('lead lecturer')){
+        if(student.includes('applicant') && !student.includes('admin') && !student.includes('mentor') && !student.includes('lead_mentor') && !student.includes('lecturer') && !student.includes('lead_lecturer')){
             db.find_student([email]).then(student => {
                 if(student.length){
                     req.session.student = {
