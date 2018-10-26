@@ -16,12 +16,14 @@ module.exports = {
         const {id, first_name, last_name, email, roles} = userInfo;
         const name = first_name + ' ' + last_name;
 
-        let student = userInfo.roles.filter(role => {
+        let student = userInfo.roles.map(role => {
             return role.role
         })
 
+        // let student = student.map(role => {
+        //     return role.role
+        // })
         console.log(student)
-
 // dont leave hardcoded 
         if(student.includes('applicant') && !student.includes('admin') && !student.includes('mentor') && !student.includes('lead_mentor') && !student.includes('lecturer') && !student.includes('lead_lecturer')){
             db.find_student([email]).then(student => {
@@ -85,7 +87,7 @@ module.exports = {
         }
     },
     loginForward: (req, res) => {
-        const redirectUri = encodeURIComponent(`https://${req.headers.host}/auth/devmtn/callback`);
+        const redirectUri = encodeURIComponent(`http://${req.headers.host}/auth/devmtn/callback`);
         const url = `https://devmountain.com/v2/auth/api/login?redirect_uri=${redirectUri}&client_id=${process.env.DEVMTN_AUTH_CLIENT_ID}`
         res.redirect(url);
     }
