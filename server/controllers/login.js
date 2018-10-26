@@ -23,7 +23,7 @@ module.exports = {
         console.log(student)
 
 // dont leave hardcoded 
-        if(true){
+        if(student.length){
             db.find_student([email]).then(student => {
                 if(student.length){
                     req.session.student = {
