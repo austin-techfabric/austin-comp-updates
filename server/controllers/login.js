@@ -17,13 +17,13 @@ module.exports = {
         const name = first_name + ' ' + last_name;
 
         let student = userInfo.roles.filter(role => {
-            return role.role === 'student'
+            return role.role
         })
 
         console.log(student)
 
 // dont leave hardcoded 
-        if(student.length){
+        if(student.includes('applicant') && !student.includes('admin') && !student.includes('mentor') && !student.includes('lead mentor') && !student.includes('lecturer') && !student.includes('lead lecturer')){
             db.find_student([email]).then(student => {
                 if(student.length){
                     req.session.student = {
