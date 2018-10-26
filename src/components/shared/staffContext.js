@@ -10,6 +10,7 @@ class ContextProvider extends Component {
         this.state = {
             user: '',
             cohort:'',
+            student:'',
             studentListByCohort: [],
             fullCohortStats: [],
             invitedStaffList:[],
@@ -24,7 +25,7 @@ class ContextProvider extends Component {
                     this.state.studentMethods.getStudents(cohort);
                     this.state.studentMethods.getCohortStats(assignmentType, cohort)
                     this.state.studentMethods.getDownloadableListByCohort(cohort, assignmentType);
-                   return { 
+                    return { 
                         cohort: cohort,
                         assignmentType: assignmentType
                     }
@@ -105,7 +106,7 @@ class ContextProvider extends Component {
                     axios.get(`/api/get_cohort_stats_by_assignment/${assignmentType}/${cohort}`).then(({data: fullCohortStats})=>{
                         this.setState(() => {
                             this.state.studentMethods.getDownloadableListByCohort(cohort, assignmentType);
-                           return {
+                            return {
                             assignmentType: assignmentType,
                             fullCohortStats: fullCohortStats
                         }
@@ -187,6 +188,16 @@ class ContextProvider extends Component {
                             downloadableList: downloadableList
                         })
                     })
+                },
+                setStudentLogin: (student) => {
+                    this.setState({
+                        student: student
+                    })
+                },
+                setStudentLogOut: () => {
+                    this.setState({
+                        student: ''
+                    })
                 }
             }
         }
@@ -200,7 +211,7 @@ class ContextProvider extends Component {
 
     render() {
         return  <StaffContext.Provider value={{...this.state}}>
-                     {this.props.children}
+                    {this.props.children}
                 </StaffContext.Provider>
     }
 }

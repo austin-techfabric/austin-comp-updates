@@ -7,6 +7,7 @@ const session = require('express-session');
 const login = require('./controllers/login.js');
 const students = require('./controllers/students');
 const userCont = require('./controllers/user');
+const forStudents = require('./controllers/forStudents');
 const helmet = require('helmet')
 
 require('dotenv').config();
@@ -74,13 +75,13 @@ app.put('/api/update_student_notes_by_assignment/:assignment', students.updateNo
 // gives full cohort stats for dashboard view
 app.get('/api/get_cohort_stats_by_assignment/:assignment/:cohort', students.getCohortStatsByAssignment);
 
-
+app.get('/api/get_student_info', forStudents.getStudentData);
 // downloadables
 app.get('/api/get_downloadable_list_by_cohort/:cohort', userCont.getDownloadableListByCohort)
 
 
 app.get('*', (req, res)=>{
-  res.sendFile(path.join(__dirname, '../build/index.html'));
+    res.sendFile(path.join(__dirname, '../build/index.html'));
 })
 
 const PORT = 4000;

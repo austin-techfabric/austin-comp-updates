@@ -32,8 +32,7 @@ class Header extends PureComponent {
                         <img src={Logo} alt='dev mountain logo'/>
                     </div>
                     <div className='nav-links-desktop'>
-                       
-                           {this.props.staffContext.user && this.props.staffContext.user.position !== 'Mentor'
+                        {this.props.staffContext.user && this.props.staffContext.user.position !== 'Mentor'
                             ?
                             <ul>
                                 <li><Link to='/dashboard'>Dashboard</Link></li>
@@ -76,11 +75,21 @@ class Header extends PureComponent {
                             <li><span onClick={this.props.staffContext.staffMethods.logout}>logout</span></li>
                         </ul>
                         :
-                           <ul>
-                               <li></li>
-                               <li><Link to='/'>Login</Link></li>
+                        this.props.staffContext.student ?
+                            <ul>
+                                <li> <li><Link to='/student_profile'>Home</Link></li></li>
+                                <li><span onClick={() => {
+                                    this.props.staffContext.studentMethods.setStudentLogOut();
+                                    this.props.staffContext.staffMethods.logout();
+                                }
+                            }>logout</span></li>
                             </ul>
-                           }
+                            :
+                        <ul>
+                            <li></li>
+                            <li><Link to='/'>Login</Link></li>
+                            </ul>
+                        }
                     </div>
                     <MobileLinks toggle={this.state.toggle}>
                         <HamburgerIcon toggleMobileLinks={this.toggleMobileLinks}/>

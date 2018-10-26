@@ -16,6 +16,27 @@ module.exports = {
         const {id, first_name, last_name, email, roles} = userInfo;
         const name = first_name + ' ' + last_name;
 
+        let student = userInfo.roles.filter(role => {
+            return role.role === 'student'
+        })
+
+        console.log(student)
+
+// dont leave hardcoded 
+        if(true){
+            db.find_student([email]).then(student => {
+                if(student.length){
+                    req.session.student = {
+                        id: student[0].id,
+                        name: student[0].name,
+                        email: student[0].email,
+                        cohort: student[0].cohort
+                    }
+                    res.redirect('/student_profile')
+                }
+            })
+        }else {
+
         db.find_user([email]).then(user => {
             if(user.length){
                 req.session.user = {
@@ -25,7 +46,6 @@ module.exports = {
                     position: user[0].position,
                     email: user[0].email,
                     assignedCohort: user[0].assigned_cohort, 
-                    picture: picture,
                 }
 
                 res.redirect('/competencies')
@@ -62,6 +82,7 @@ module.exports = {
             console.error('error with find_user', error);
             res.status(500).send('Something went wrong on the server');
         })
+        }
     },
     loginForward: (req, res) => {
         const redirectUri = encodeURIComponent(`http://${req.headers.host}/auth/devmtn/callback`);
