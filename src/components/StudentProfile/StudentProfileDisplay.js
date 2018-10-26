@@ -6,7 +6,7 @@ const StudentProfile = (props) => {
     const stylePassed = {
         textAlign: 'center',
         width: '100%',
-        background: 'rgba(255, 100, 100, 0.5)',
+        background: 'rgba(100, 255, 100, 0.5)',
         margin: '10px',
         boxShadow: '1px 3px 5px rgba(0, 0, 0, 0.418)',
         padding: '5px'
