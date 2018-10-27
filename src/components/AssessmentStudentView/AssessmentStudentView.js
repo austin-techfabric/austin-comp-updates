@@ -13,7 +13,7 @@ const AssessmentStudentView = (props) => {
     })
     let percentageComplete = (comPassed/studentAssignment.length) * 100;
     const assessList = studentAssignment.map(assess => {
-        return <div key={assess.assess_id} style={assess.passed ? {backgroundColor:"#e0d0d0"} : {textDecoration: 'none'}} className='assess-container'>
+        return <div key={assess.assess_id} style={assess.passed ? {backgroundColor:"#c6f2c4"} : {textDecoration: 'none'}} className='assess-container'>
                     <div>
                         <div style={assess.passed ? {textDecoration: 'line-through'} : {textDecoration: 'none'}}>{assess.assessment_name}</div>
                         <div className='status-image-container'>{user ? assess.passed ? <img onClick={() => studentMethods.markAssessComplete(assess.assess_id, assess.id, !assess.passed)} src={passed} alt='a passing checkmark'/> : <img onClick={() => studentMethods.markAssessComplete(assess.assess_id, assess.id, !assess.passed)} alt='an unchecked checkmark' src={incomplete}/> : ''}</div>

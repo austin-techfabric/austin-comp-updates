@@ -16,7 +16,7 @@ const StudentDisplay = (props) => {
     
     const compList = studentAssignment.map(comp => {
         
-        return <div key={comp.comp_id} style={comp.passed ? {backgroundColor:"#e0d0d0"} : {textDecoration: 'none'}} className='comp-container'>
+        return <div key={comp.comp_id} style={comp.passed ? {backgroundColor:"#c6f2c4"} : {textDecoration: 'none'}} className='comp-container'>
                     <div style={comp.passed ? {textDecoration: 'line-through'} : {textDecoration: 'none'}}>
                         <div>{comp.category}</div>
                         <div>{comp.competency_name}</div>
