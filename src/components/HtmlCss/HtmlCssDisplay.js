@@ -7,7 +7,7 @@ const DashboardDisplay = (props) => {
     return (
         <div className='dashboard-display'>
             <div className='mapped-student-container'>
-                <h1>Competencies</h1>
+                <h1>HTML/CSS Competencies</h1>
                 <header>
                     <div>Name</div>
                     <div>Email</div>
