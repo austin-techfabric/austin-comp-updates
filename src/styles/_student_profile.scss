@@ -26,5 +26,23 @@
             align-items: center;
         }
     }
-    
+
+    .percentages-container {
+        display: flex;
+        align-items: center;
+        position: relative;
+       
+        .comps-left {
+            color: $link-color;
+            font-size: 28px;
+            position: absolute;
+            right: 0;
+            left: 35px;
+            width: 55px;
+            top: 55%;
+            font-size: 17px;
+            margin: 0 auto;
+        }
+
+    }
 }
