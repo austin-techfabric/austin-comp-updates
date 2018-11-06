@@ -9,6 +9,7 @@ const students = require('./controllers/students');
 const userCont = require('./controllers/user');
 const forStudents = require('./controllers/forStudents');
 const helmet = require('helmet')
+const middlewares = require('./controllers/helpers/middlewares')
 
 require('dotenv').config();
 app.use(helmet())
@@ -35,6 +36,8 @@ app.use(session({
 app.get('/auth/login', login.loginForward);
 app.get('/auth/devmtn/callback', login.authCallback);
 app.post('/api/logout', login.logout);
+
+app.use(middlewares.checkForSession)
 
 //user routes 
 app.get('/api/get_logged_in_user', userCont.readLoggedInUser);
