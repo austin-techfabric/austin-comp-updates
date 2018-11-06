@@ -117,7 +117,7 @@ module.exports = {
 	},
 	loginForward: (req, res) => {
 		const redirectUri = encodeURIComponent(
-			`https://${req.headers.host}/auth/devmtn/callback`
+			`http://${req.headers.host}/auth/devmtn/callback`
 		);
 		const url = `https://devmountain.com/v2/auth/api/login?redirect_uri=${redirectUri}&client_id=${
 			process.env.DEVMTN_AUTH_CLIENT_ID
