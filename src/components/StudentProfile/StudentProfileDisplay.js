@@ -113,7 +113,7 @@ const StudentProfile = (props) => {
             <div className='student-name-profile'>
                 <h1>{props.assessments[0] ? `${props.assessments[0].name.toUpperCase()} - ${props.assessments[0].cohort.toUpperCase()}` : ''}</h1>
             </div>
-            <div style={{marginBottom: '50px'}}>
+            <div className="student-view-chart-container">
                 <div>
                     <h1>Assesments</h1>
                     <div className='percentages-container'>
@@ -160,11 +160,11 @@ const StudentProfile = (props) => {
                     {assessmentLeft}
                 </div>
                 <div>
-                    <h2>Functional Comps</h2>
+                    <h2>Functional Competencies</h2>
                     {competenciesLeft}
                 </div>
                 <div>
-                    <h2>HTML/CSS Comps</h2>
+                    <h2>HTML/CSS Competencies</h2>
                     {htmlCssLeft}
                 </div>
             </div>

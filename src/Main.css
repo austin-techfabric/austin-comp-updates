@@ -771,6 +771,9 @@ main {
   text-align: left;
   margin: 20px 0; }
 
+.student-profile-display-container .student-view-chart-container {
+  margin-bottom: 50px; }
+
 .student-profile-display-container > div {
   display: flex;
   justify-content: center;
