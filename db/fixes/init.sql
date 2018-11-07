@@ -84,7 +84,7 @@ id SERIAL PRIMARY KEY NOT NULL
 
 
 --insert dummy data
-INSERT INTO invited_staff_list (position, email, assigned_cohort, registered) VALUES ('Lead Mentor', 'joshborup@gmail.com', 'wpx7', false);
+INSERT INTO invited_staff_list (position, email, assigned_cohort, registered) VALUES ('Mentor', 'andrew.nam@devmounta.in', 'wpx7', false);
 
 --insert tracked comps
 INSERT INTO competencies (category, competency_name, description, active) VALUES ('Tooling','Git', 'setting up .gitignore, package.json etc...', true);
