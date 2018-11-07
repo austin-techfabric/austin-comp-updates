@@ -140,7 +140,8 @@ class ContextProvider extends Component {
 					axios.post("/api/logout").then(() => {
 						this.setState(
 							{
-								user: ""
+								user: "",
+								student: ""
 							},
 							this.props.history.push("/")
 						);

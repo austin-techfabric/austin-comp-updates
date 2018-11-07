@@ -148,6 +148,8 @@ main {
             padding: 10px;
             text-align: center;
             font-size: 20px; }
+            .header-container .nav-links-mobile-container .links ul li span {
+              color: white; }
             .header-container .nav-links-mobile-container .links ul li a {
               color: white;
               text-decoration: none;
