@@ -72,56 +72,39 @@ module.exports = {
 									(invited) => invited.email === email
 								);
 
-								if (invited_user.length) {
-									return db
-										.create_user([
-											id,
-											name,
-											invited_user[0].position,
-											invited_user[0].email,
-											invited_user[0].assigned_cohort
-										])
-										.then((user) => {
-											req.session.user = {
-												id: user[0].id,
-												sub: user[0].sub,
-												name: user[0].name,
-												position: user[0].position,
-												email: user[0].email,
-												assignedCohort:
-													user[0].assigned_cohort
-											};
-											res.redirect("/competencies");
-										})
-										.catch((err) => {
-											console.log(err);
-											res.status(404).send(
-												`SQL error ${
-													err.detail
-												} error code: ${err.code}`
-											);
-										});
-								} else {
-									res.status(400).send(
-										"You are not an invited user"
-									);
-								}
-							});
-					}
-				})
-				.catch((error) => {
-					console.error("error with find_user", error);
-					res.status(500).send("Something went wrong on the server");
-				});
-		}
-	},
-	loginForward: (req, res) => {
-		const redirectUri = encodeURIComponent(
-			`http://${req.headers.host}/auth/devmtn/callback`
-		);
-		const url = `https://devmountain.com/v2/auth/api/login?redirect_uri=${redirectUri}&client_id=${
-			process.env.DEVMTN_AUTH_CLIENT_ID
-		}`;
-		res.redirect(url);
-	}
-};
+                    if(invited_user.length){
+
+                        return db.create_user([id, name, invited_user[0].position, invited_user[0].email, invited_user[0].assigned_cohort]).then(user => {
+                            req.session.user = {
+                                id: user[0].id,
+                                sub: user[0].sub, 
+                                name: user[0].name,
+                                position: user[0].position,
+                                email: user[0].email,
+                                assignedCohort: user[0].assigned_cohort, 
+                            }
+                            res.redirect('/competencies')
+                        }).catch(err => {
+                            console.log(err)
+                            res.status(404).send(`SQL error ${err.detail} error code: ${err.code}`)
+                        })
+        
+
+                    } else {
+                        res.status(400).send('You are not an invited user');
+                    }
+
+                })
+            }
+        }).catch(error => {
+            console.error('error with find_user', error);
+            res.status(500).send('Something went wrong on the server');
+        })
+        }
+    },
+    loginForward: (req, res) => {
+        const redirectUri = encodeURIComponent(`http${process.env.ENVIRONMENT === 'production' ? 's' : ''}://${req.headers.host}/auth/devmtn/callback`);
+        const url = `https://devmountain.com/v2/auth/api/login?redirect_uri=${redirectUri}&client_id=${process.env.DEVMTN_AUTH_CLIENT_ID}`
+        res.redirect(url);
+    }
+}

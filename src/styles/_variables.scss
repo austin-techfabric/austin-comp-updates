@@ -1,38 +1,41 @@
+$heading-color: rgb(109, 109, 109);
 $link-color: rgb(0, 114, 167);
+$border-color: rgb(80, 169, 220);
 $button-color: rgb(80, 169, 220);
 $button-border-radius: 2px;
+$darker-text: rgb(54, 54, 54);
 
-%flex-row-center-center{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+%flex-row-center-center {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 }
 
-%flex-row-start-center{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+%flex-row-start-center {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
 }
 
-%flex-row-end-center{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+%flex-row-end-center {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
 }
 
-%flex-row-between-center{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+%flex-row-between-center {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 }
 
 %flex-column-center-end {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items:flex-end;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-end;
 }
