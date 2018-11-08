@@ -138,7 +138,7 @@ const StudentProfile = (props) => {
 	const htmlCssLeft = props.htmlcss.map((competency) => {
 		return (
 			<div style={competency.passed ? stylePassed : styleLeft}>
-				<div style={baseStyle.header}>{competency.competency_name}</div>
+				<div style={baseStyle.header}>{competency.category.includes('(Elective)') ? competency.competency_name + ' (Elective)' : competency.competency_name}</div>
 				<div>{competency.description}</div>
 			</div>
 		);
